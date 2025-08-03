@@ -13,13 +13,13 @@ Website CRAPPO sudah siap untuk di-deploy ke Vercel dengan optimasi penuh.
 - Minifikasi dan compression aktif
 - Source maps diatur berdasarkan environment
 
-✅ **Vercel Configuration**
-
+✅ **Vercel Configuration** 
 - `vercel.json` - Konfigurasi routing, headers, dan security
+- `vite.config.prod.ts` - Production build config (tanpa server import)
 - `.vercelignore` - File yang tidak perlu di-upload
-- Build command: `npm run build:client`
+- Build command: `npm run build:client` (menggunakan prod config)
 - Output directory: `dist/spa`
-- Fixed: Invalid regex pattern in headers
+- Fixed: Server import error in vite config
 
 ✅ **SEO & Performance**
 
