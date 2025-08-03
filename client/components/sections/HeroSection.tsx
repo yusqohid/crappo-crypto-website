@@ -1,54 +1,42 @@
 import React, { memo } from "react";
 import { motion } from "framer-motion";
-import {
-  slideInLeft,
-  slideInRight,
-  floatingAnimation,
-} from "../../lib/animations";
+import { slideInLeft, slideInRight } from "../../lib/animations";
 
 const HeroSection = memo(() => {
   return (
     <section className="relative max-w-[1440px] mx-auto px-6 lg:px-[120px] pb-[60px] overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Main Radial Gradient Blurs */}
+        {/* Optimized Background Blurs - Reduced complexity */}
         <motion.div
           className="absolute top-20 left-5 lg:left-10 w-[200px] md:w-[300px] lg:w-[400px] h-[200px] md:h-[300px] lg:h-[400px] bg-crypto-blue/20 rounded-full blur-[60px] md:blur-[80px] lg:blur-[120px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.4, scale: 1 }}
           transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 2,
+            ease: "easeOut",
           }}
         />
 
         <motion.div
           className="absolute top-40 right-5 lg:right-20 w-[150px] md:w-[200px] lg:w-[300px] h-[150px] md:h-[200px] lg:h-[300px] bg-blue-400/15 rounded-full blur-[50px] md:blur-[70px] lg:blur-[100px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 0.3, scale: 1 }}
           transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
+            duration: 2.5,
+            delay: 0.3,
+            ease: "easeOut",
           }}
         />
 
         <motion.div
           className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[100px] md:h-[150px] lg:h-[200px] bg-gradient-to-r from-crypto-blue/10 to-purple-400/10 rounded-full blur-[40px] md:blur-[60px] lg:blur-[80px]"
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, 0],
-          }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 0.3, scale: 1 }}
           transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 3,
+            delay: 0.6,
+            ease: "easeOut",
           }}
         />
 
@@ -66,125 +54,99 @@ const HeroSection = memo(() => {
           />
         </div>
 
-        {/* Floating Geometric Shapes */}
+        {/* Simplified Geometric Shapes - Static for performance */}
         <motion.div
           className="absolute top-32 left-1/4 w-20 h-20 border border-crypto-blue/20 rounded-full"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.1, 1],
-          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
+            duration: 1,
+            delay: 1,
+            ease: "easeOut",
           }}
         />
 
         <motion.div
           className="absolute top-60 right-1/3 w-12 h-12 bg-gradient-to-br from-crypto-blue/10 to-transparent rounded-lg rotate-45"
-          animate={{
-            rotate: [45, 225, 45],
-            y: [-10, 10, -10],
-          }}
+          initial={{ opacity: 0, rotate: 0 }}
+          animate={{ opacity: 1, rotate: 45 }}
           transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 0.8,
+            delay: 1.2,
+            ease: "easeOut",
           }}
         />
 
         <motion.div
           className="absolute bottom-40 left-20 w-16 h-16 border-2 border-white/10 rotate-12"
-          animate={{
-            rotate: [12, 192, 12],
-            x: [-5, 5, -5],
-          }}
+          initial={{ opacity: 0, rotate: 0 }}
+          animate={{ opacity: 1, rotate: 12 }}
           transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 0.6,
+            delay: 1.4,
+            ease: "easeOut",
           }}
         />
 
-        {/* Animated Light Rays */}
+        {/* Simplified Light Effects - Static for better performance */}
         <motion.div
           className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[2px] h-40 bg-gradient-to-b from-crypto-blue/30 to-transparent"
-          animate={{
-            opacity: [0, 1, 0],
-            scaleY: [0.5, 1, 0.5],
-          }}
+          initial={{ opacity: 0, scaleY: 0.5 }}
+          animate={{ opacity: 0.6, scaleY: 1 }}
           transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
+            duration: 1.5,
+            delay: 2,
+            ease: "easeOut",
           }}
         />
 
         <motion.div
           className="absolute bottom-0 right-1/4 w-[2px] h-32 bg-gradient-to-t from-blue-400/20 to-transparent"
-          animate={{
-            opacity: [0, 0.8, 0],
-            scaleY: [0.3, 1, 0.3],
-          }}
+          initial={{ opacity: 0, scaleY: 0.3 }}
+          animate={{ opacity: 0.4, scaleY: 1 }}
           transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3,
+            duration: 1.2,
+            delay: 2.5,
+            ease: "easeOut",
           }}
         />
 
-        {/* Particle Effects */}
-        {[...Array(8)].map((_, i) => (
+        {/* Minimal Particle Effects - Only 3 particles for performance */}
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-crypto-blue/40 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${20 + i * 30}%`,
+              top: `${30 + i * 20}%`,
             }}
-            animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-              opacity: [0, 1, 0],
-              scale: [0.5, 1, 0.5],
-            }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
-              duration: 4 + Math.random() * 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 2,
+              duration: 0.8,
+              delay: 3 + i * 0.3,
+              ease: "easeOut",
             }}
           />
         ))}
 
-        {/* Constellation Lines */}
+        {/* Simplified Constellation Lines - Static for performance */}
         <svg
           className="absolute inset-0 w-full h-full opacity-10"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <motion.linearGradient
+            <linearGradient
               id="constellationGradient"
               x1="0%"
               y1="0%"
               x2="100%"
               y2="100%"
-              animate={{
-                x2: ["100%", "0%", "100%"],
-                y2: ["100%", "0%", "100%"],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
             >
               <stop offset="0%" stopColor="#3671E9" stopOpacity="0.3" />
               <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.6" />
               <stop offset="100%" stopColor="#3671E9" stopOpacity="0.1" />
-            </motion.linearGradient>
+            </linearGradient>
           </defs>
 
           <motion.path
@@ -195,10 +157,9 @@ const HeroSection = memo(() => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.6 }}
             transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
+              duration: 2,
+              delay: 2,
+              ease: "easeOut",
             }}
           />
 
@@ -210,40 +171,33 @@ const HeroSection = memo(() => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.4 }}
             transition={{
-              duration: 4,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              delay: 1,
+              duration: 2.5,
+              delay: 2.5,
+              ease: "easeOut",
             }}
           />
         </svg>
 
-        {/* Corner Accent Lights */}
+        {/* Simplified Corner Accent Lights - Static */}
         <motion.div
           className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-crypto-blue/20 to-transparent rounded-full blur-xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 0.4, scale: 1 }}
           transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 1.5,
+            delay: 3,
+            ease: "easeOut",
           }}
         />
 
         <motion.div
           className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-blue-400/15 to-transparent rounded-full blur-xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.5, 0.2],
-          }}
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 0.3, scale: 1 }}
           transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
+            duration: 2,
+            delay: 3.5,
+            ease: "easeOut",
           }}
         />
       </div>
@@ -402,81 +356,82 @@ const HeroSection = memo(() => {
           <div className="relative w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[604px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[585px] mx-auto lg:mx-0">
             {/* Main Illustration */}
             <motion.img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/6a568ddf4d23ad9ba50ed984314961184dbb430b?width=1208"
+              src="/image/hero-image.png"
               alt="Crypto trading platform illustration"
               className="w-full h-full object-contain relative z-10"
-              animate={floatingAnimation}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.2 },
+              }}
             />
 
             {/* Illustration Background Glow */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-crypto-blue/20 via-transparent to-blue-400/20 rounded-full blur-3xl"
-              animate={{
-                scale: [0.8, 1.1, 0.8],
-                opacity: [0.3, 0.6, 0.3],
-              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.4, scale: 1 }}
               transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
+                duration: 1.5,
+                delay: 0.8,
+                ease: "easeOut",
               }}
             />
 
-            {/* Enhanced Floating elements around illustration */}
+            {/* Optimized Floating elements - Reduced animations for performance */}
             <motion.div
-              className="absolute top-20 right-10 w-4 h-4 bg-crypto-blue rounded-full opacity-60 shadow-lg shadow-crypto-blue/50"
+              className="absolute top-20 right-10 w-4 h-4 bg-crypto-blue rounded-full opacity-60"
+              initial={{ opacity: 0, y: 20 }}
               animate={{
-                y: [-20, 20, -20],
-                x: [-10, 10, -10],
-                scale: [1, 1.2, 1],
+                opacity: 0.6,
+                y: 0,
               }}
               transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
+                duration: 0.8,
+                delay: 1.2,
+                ease: "easeOut",
               }}
             />
             <motion.div
-              className="absolute bottom-20 left-10 w-6 h-6 bg-white bg-opacity-20 rounded-full shadow-lg shadow-white/20"
+              className="absolute bottom-20 left-10 w-6 h-6 bg-white bg-opacity-20 rounded-full"
+              initial={{ opacity: 0, scale: 0 }}
               animate={{
-                y: [20, -20, 20],
-                x: [10, -10, 10],
-                rotate: [0, 180, 360],
+                opacity: 0.2,
+                scale: 1,
               }}
               transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut",
+                duration: 0.6,
+                delay: 1.4,
+                ease: "easeOut",
               }}
             />
 
-            {/* Additional Floating Crypto Icons */}
+            {/* Simple Crypto Icons - Static for better performance */}
             <motion.div
               className="absolute top-32 left-8 w-8 h-8 bg-gradient-to-br from-yellow-400/80 to-orange-500/80 rounded-full"
-              animate={{
-                y: [-15, 15, -15],
-                rotate: [0, 360, 0],
-              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 0.8, scale: 1 }}
               transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
+                duration: 0.6,
+                delay: 1.6,
+                ease: "easeOut",
               }}
             />
 
             <motion.div
               className="absolute bottom-32 right-8 w-6 h-6 bg-gradient-to-br from-purple-400/80 to-pink-500/80 rounded-lg rotate-45"
-              animate={{
-                y: [10, -10, 10],
-                x: [-5, 5, -5],
-                rotate: [45, 225, 45],
-              }}
+              initial={{ opacity: 0, rotate: 0 }}
+              animate={{ opacity: 0.8, rotate: 45 }}
               transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
+                duration: 0.6,
+                delay: 1.8,
+                ease: "easeOut",
               }}
             />
           </div>

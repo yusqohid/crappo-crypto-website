@@ -5,7 +5,6 @@ import {
   itemVariants,
   slideInLeft,
   slideInRight,
-  floatingAnimation,
 } from "../../lib/animations";
 
 const statisticsData = [
@@ -213,13 +212,21 @@ const StatisticsSection = memo(() => {
             >
               <div className="relative w-full max-w-[500px] mx-auto lg:mx-0">
                 <motion.img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F9da17c4b43ee4d6e817795d2e5a07623%2F06df7c98800c41588ee4f32c576af0ef?format=webp&width=800"
-                  alt=""
+                  src="/image/why-choose.png"
+                  alt="Why choose CRAPPO illustration"
                   className="w-full h-auto object-contain relative z-10"
                   variants={itemVariants}
-                  animate={floatingAnimation}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    transition: { duration: 0.3 },
+                  }}
                 />
 
                 {/* Background Glow */}
