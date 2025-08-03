@@ -13,7 +13,6 @@ interface ProductCardProps {
     description: string;
     buttonText: string;
     buttonType: "primary" | "secondary";
-    theme: "dark" | "light";
     icon: React.ReactNode;
   };
   variants: any;
@@ -21,17 +20,11 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, variants, index }: ProductCardProps) => {
-  const isDark = product.theme === "dark";
-
   return (
     <motion.div
-      className={`rounded-2xl p-8 text-center relative overflow-hidden ${
-        isDark
-          ? "bg-gradient-to-br from-[#2B076E] to-[#1e0555]"
-          : "bg-[#f0f0f0] shadow-2xl"
-      }`}
+      className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 text-center h-full"
       variants={variants}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="relative z-10">
@@ -39,52 +32,28 @@ const ProductCard = ({ product, variants, index }: ProductCardProps) => {
         <div className="w-20 h-20 mx-auto mb-8 relative">{product.icon}</div>
 
         <div className="mb-6">
-          <h3
-            className={`font-rubik font-bold text-3xl mb-2 ${
-              isDark ? "text-white" : "text-crypto-dark"
-            }`}
-          >
+          <h3 className="font-rubik font-bold text-3xl text-white mb-2">
             {product.title}
           </h3>
-          <span
-            className={`font-rubik font-medium text-lg ${
-              isDark ? "text-white opacity-70" : "text-gray-400"
-            }`}
-          >
+          <span className="font-rubik font-medium text-lg text-crypto-grey">
             {product.subtitle}
           </span>
         </div>
 
-        <p
-          className={`font-rubik text-base mb-8 leading-7 ${
-            isDark ? "text-white" : "text-gray-500"
-          }`}
-        >
+        <p className="font-rubik text-base text-crypto-grey mb-8 leading-7">
           {product.description}
         </p>
 
         {product.buttonType === "primary" ? (
           <motion.button
-            className={`inline-flex items-center gap-4 rounded-4xl px-6 py-4 transition-colors ${
-              isDark
-                ? "bg-white bg-opacity-20 hover:bg-opacity-30"
-                : "bg-crypto-blue hover:bg-blue-600"
-            }`}
+            className="inline-flex items-center gap-4 bg-crypto-blue hover:bg-blue-600 rounded-4xl px-6 py-4 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span
-              className={`font-rubik font-medium text-lg ${
-                isDark ? "text-white" : "text-white"
-              }`}
-            >
+            <span className="font-rubik font-medium text-lg text-white">
               {product.buttonText}
             </span>
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                isDark ? "bg-white" : "bg-white"
-              }`}
-            >
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M10.5 16.9999C10.3684 17.0007 10.2379 16.9755 10.1161 16.9257C9.99426 16.8759 9.88344 16.8026 9.79 16.7099C9.69627 16.617 9.62188 16.5064 9.57111 16.3845C9.52034 16.2626 9.4942 16.1319 9.4942 15.9999C9.4942 15.8679 9.52034 15.7372 9.57111 15.6154C9.62188 15.4935 9.69627 15.3829 9.79 15.2899L13.1 11.9999L9.92 8.68993C9.73375 8.50257 9.62921 8.24911 9.62921 7.98493C9.62921 7.72074 9.73375 7.46729 9.92 7.27993C10.013 7.1862 10.1236 7.11181 10.2454 7.06104C10.3673 7.01027 10.498 6.98413 10.63 6.98413C10.762 6.98413 10.8927 7.01027 11.0146 7.06104C11.1364 7.11181 11.247 7.1862 11.34 7.27993L15.2 11.2799C15.3832 11.4669 15.4859 11.7182 15.4859 11.9799C15.4859 12.2417 15.3832 12.493 15.2 12.6799L11.2 16.6799C11.1102 16.7769 11.0022 16.855 10.882 16.91C10.7619 16.9649 10.632 16.9955 10.5 16.9999Z"
@@ -94,24 +63,20 @@ const ProductCard = ({ product, variants, index }: ProductCardProps) => {
             </div>
           </motion.button>
         ) : (
-          <motion.button
-            className="w-16 h-16 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-crypto-blue transition-colors group"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="group-hover:scale-110 transition-transform"
-            >
+          <div className="flex items-center text-crypto-blue">
+            <span className="font-rubik text-sm font-medium mr-2">
+              {product.buttonText}
+            </span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
-                d="M10.5 16.9999C10.3684 17.0007 10.2379 16.9755 10.1161 16.9257C9.99426 16.8759 9.88344 16.8026 9.79 16.7099C9.69627 16.617 9.62188 16.5064 9.57111 16.3845C9.52034 16.2626 9.4942 16.1319 9.4942 15.9999C9.4942 15.8679 9.52034 15.7372 9.57111 15.6154C9.62188 15.4935 9.69627 15.3829 9.79 15.2899L13.1 11.9999L9.92 8.68993C9.73375 8.50257 9.62921 8.24911 9.62921 7.98493C9.62921 7.72074 9.73375 7.46729 9.92 7.27993C10.013 7.1862 10.1236 7.11181 10.2454 7.06104C10.3673 7.01027 10.498 6.98413 10.63 6.98413C10.762 6.98413 10.8927 7.01027 11.0146 7.06104C11.1364 7.11181 11.247 7.1862 11.34 7.27993L15.2 11.2799C15.3832 11.4669 15.4859 11.7182 15.4859 11.9799C15.4859 12.2417 15.3832 12.493 15.2 12.6799L11.2 16.6799C11.1102 16.7769 11.0022 16.855 10.882 16.91C10.7619 16.9649 10.632 16.9955 10.5 16.9999Z"
-                fill="#3671E9"
+                d="M6 12L10 8L6 4"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
-          </motion.button>
+          </div>
         )}
       </div>
     </motion.div>
@@ -161,7 +126,6 @@ export default function Products() {
         "Professional trading interface with advanced charting tools, real-time market data, and order management.",
       buttonText: "Start Trading",
       buttonType: "primary" as const,
-      theme: "dark" as const,
       icon: (
         <motion.svg
           width="80"
@@ -206,7 +170,6 @@ export default function Products() {
         "Military-grade security for storing your cryptocurrencies with multi-signature protection and cold storage options.",
       buttonText: "Learn More",
       buttonType: "secondary" as const,
-      theme: "light" as const,
       icon: (
         <motion.svg
           width="80"
@@ -233,7 +196,6 @@ export default function Products() {
         "Access lending, borrowing, yield farming, and liquidity mining opportunities in the DeFi ecosystem.",
       buttonText: "Explore DeFi",
       buttonType: "secondary" as const,
-      theme: "light" as const,
       icon: (
         <motion.svg
           width="80"

@@ -238,7 +238,7 @@ export default function Features() {
           >
             Powerful Platform
             <br />
-            <span className="bg-gradient-to-r from-crypto-blue via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent">
               Features
             </span>
           </motion.h1>
@@ -289,7 +289,7 @@ export default function Features() {
         <motion.div className="text-center mb-16" variants={itemVariants}>
           <h2 className="font-rubik font-bold text-3xl lg:text-4xl text-white mb-4">
             Core
-            <span className="bg-gradient-to-r from-crypto-blue to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent">
               {" "}
               Features
             </span>
@@ -306,49 +306,33 @@ export default function Features() {
               key={index}
               className="relative group"
               variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {/* Card glow effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-crypto-blue/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
-
               {/* Main card */}
-              <div className="relative bg-crypto-card border border-crypto-border rounded-2xl p-8 hover:border-crypto-blue/50 transition-all duration-300 h-full">
-                {/* Icon with animated background */}
+              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 h-full">
+                {/* Icon with simple animation */}
                 <div className="relative mb-6">
-                  <motion.div
-                    className="w-16 h-16 bg-gradient-to-br from-crypto-blue/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-4"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                      {feature.icon}
-                    </span>
-                  </motion.div>
+                  <div className="w-16 h-16 bg-crypto-blue bg-opacity-20 rounded-2xl flex items-center justify-center mb-4">
+                    <span className="text-3xl">{feature.icon}</span>
+                  </div>
                 </div>
 
-                <h3 className="font-rubik font-bold text-2xl text-white mb-4 group-hover:text-crypto-blue transition-colors duration-300">
+                <h3 className="font-rubik font-bold text-2xl text-white mb-4">
                   {feature.title}
                 </h3>
                 <p className="font-rubik text-crypto-grey mb-6 leading-relaxed">
                   {feature.description}
                 </p>
 
-                {/* Enhanced highlights */}
+                {/* Simplified highlights */}
                 <ul className="space-y-3">
                   {feature.highlights.map((highlight, idx) => (
-                    <motion.li
+                    <li
                       key={idx}
-                      className="flex items-center text-sm text-crypto-grey group-hover:text-white transition-colors duration-300"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.1 }}
+                      className="flex items-center text-sm text-crypto-grey"
                     >
-                      <motion.div
-                        className="w-6 h-6 bg-gradient-to-r from-crypto-blue to-purple-500 rounded-full mr-3 flex items-center justify-center"
-                        whileHover={{ scale: 1.2, rotate: 180 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
+                      <div className="w-6 h-6 bg-crypto-blue rounded-full mr-3 flex items-center justify-center">
                         <svg
                           width="12"
                           height="12"
@@ -363,22 +347,11 @@ export default function Features() {
                             strokeLinejoin="round"
                           />
                         </svg>
-                      </motion.div>
+                      </div>
                       {highlight}
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
-
-                {/* Hover reveal button */}
-                <motion.div
-                  className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ y: 10 }}
-                  whileInView={{ y: 0 }}
-                >
-                  <button className="w-full bg-gradient-to-r from-crypto-blue to-purple-500 text-white py-3 rounded-xl font-rubik font-medium text-sm hover:shadow-lg transition-shadow duration-300">
-                    Learn More
-                  </button>
-                </motion.div>
               </div>
             </motion.div>
           ))}
@@ -394,7 +367,7 @@ export default function Features() {
         variants={containerVariants}
       >
         {/* Background pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-crypto-blue/5 via-transparent to-purple-500/5 rounded-3xl"></div>
+        <div className="absolute inset-0 bg-white/5 rounded-3xl"></div>
 
         <motion.div
           className="text-center mb-16 relative z-10"
@@ -402,7 +375,7 @@ export default function Features() {
         >
           <h2 className="font-rubik font-bold text-4xl lg:text-5xl text-white mb-6">
             Trading
-            <span className="bg-gradient-to-r from-crypto-blue to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent">
               {" "}
               Solutions
             </span>
@@ -426,7 +399,7 @@ export default function Features() {
                 key={index}
                 className="flex flex-col items-center"
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ y: -2 }}
               >
                 <div className="font-rubik font-bold text-2xl text-crypto-blue mb-1">
                   {stat.value}
@@ -445,58 +418,31 @@ export default function Features() {
               key={index}
               className="relative group"
               variants={itemVariants}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Gradient border effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-crypto-blue/30 via-purple-500/30 to-crypto-blue/30 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition duration-500"></div>
-
               {/* Main card */}
-              <div className="relative bg-gradient-to-br from-crypto-card/80 to-crypto-dark/80 backdrop-blur-sm border border-crypto-border rounded-2xl p-6 hover:border-crypto-blue/50 transition-all duration-300 h-full">
-                {/* Icon with enhanced styling */}
-                <motion.div
-                  className="relative mb-4"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-crypto-blue/20 to-purple-500/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 h-full">
+                {/* Icon */}
+                <div className="relative mb-4">
+                  <div className="w-14 h-14 bg-crypto-blue bg-opacity-20 rounded-xl flex items-center justify-center">
                     <span className="text-2xl">{feature.icon}</span>
                   </div>
+                </div>
 
-                  {/* Floating indicator */}
-                  <motion.div
-                    className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className="w-full h-full bg-white rounded-full scale-50"></div>
-                  </motion.div>
-                </motion.div>
-
-                <h3 className="font-rubik font-bold text-xl text-white mb-3 group-hover:text-crypto-blue transition-colors duration-300">
+                <h3 className="font-rubik font-bold text-xl text-white mb-3">
                   {feature.title}
                 </h3>
                 <p className="font-rubik text-crypto-grey text-sm leading-relaxed mb-4">
                   {feature.description}
                 </p>
 
-                {/* Action indicator */}
-                <motion.div
-                  className="flex items-center text-crypto-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ x: -10 }}
-                  whileInView={{ x: 0 }}
-                >
+                {/* Simple action indicator */}
+                <div className="flex items-center text-crypto-blue">
                   <span className="font-rubik text-sm font-medium mr-2">
-                    Explore
+                    Learn More
                   </span>
-                  <motion.svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    whileHover={{ x: 3 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path
                       d="M6 12L10 8L6 4"
                       stroke="currentColor"
@@ -504,8 +450,8 @@ export default function Features() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
-                  </motion.svg>
-                </motion.div>
+                  </svg>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -521,43 +467,16 @@ export default function Features() {
         variants={containerVariants}
       >
         <motion.div
-          className="relative bg-gradient-to-br from-crypto-blue/20 via-purple-500/10 to-crypto-blue/20 rounded-3xl p-8 lg:p-12 border border-crypto-blue/30 overflow-hidden"
+          className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 overflow-hidden"
           variants={itemVariants}
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ y: -4 }}
           transition={{ duration: 0.3 }}
         >
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <motion.div
-              className="absolute top-4 right-8 w-20 h-20 bg-white/5 rounded-full"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="absolute bottom-8 left-12 w-16 h-16 bg-crypto-blue/10 rounded-full"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
-
-            {/* Grid pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="grid grid-cols-12 h-full">
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <div key={i} className="border-r border-white/20"></div>
-                ))}
-              </div>
-            </div>
-          </div>
-
           <div className="relative z-10">
             <div className="text-center mb-12">
               <motion.h2
                 className="font-rubik font-bold text-3xl lg:text-4xl text-white mb-4"
                 variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
               >
                 Platform Performance
               </motion.h2>
@@ -578,42 +497,23 @@ export default function Features() {
               ].map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="text-center group"
+                  className="text-center"
                   variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.3 }}
                 >
                   {/* Icon */}
-                  <motion.div
-                    className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{ rotate: [0, -10, 10, 0] }}
-                  >
-                    {stat.icon}
-                  </motion.div>
+                  <div className="text-2xl mb-3">{stat.icon}</div>
 
-                  {/* Number with enhanced styling */}
-                  <motion.div
-                    className="font-rubik font-bold text-3xl lg:text-4xl bg-gradient-to-r from-crypto-blue to-purple-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300"
-                    whileHover={{
-                      backgroundImage:
-                        "linear-gradient(45deg, #3671E9, #8B5CF6, #3671E9)",
-                    }}
-                  >
+                  {/* Number */}
+                  <div className="font-rubik font-bold text-3xl lg:text-4xl bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent mb-2">
                     {stat.number}
-                  </motion.div>
-
-                  {/* Label */}
-                  <div className="font-rubik text-crypto-grey group-hover:text-white transition-colors duration-300">
-                    {stat.label}
                   </div>
 
-                  {/* Hover indicator */}
-                  <motion.div
-                    className="w-full h-1 bg-gradient-to-r from-crypto-blue to-purple-500 rounded-full mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                  />
+                  {/* Label */}
+                  <div className="font-rubik text-crypto-grey">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -630,19 +530,14 @@ export default function Features() {
                   "🔐 SOC 2 Certified",
                   "🌍 Global Coverage",
                 ].map((badge, index) => (
-                  <motion.div
+                  <div
                     key={index}
                     className="flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10"
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    }}
-                    transition={{ duration: 0.2 }}
                   >
                     <span className="font-rubik text-sm text-crypto-grey">
                       {badge}
                     </span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>

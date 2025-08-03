@@ -87,7 +87,7 @@ export default function About() {
       />
 
       {/* Hero Section */}
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] pb-[60px]">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
         <motion.div
           className="text-center py-20"
           initial="hidden"
@@ -104,14 +104,6 @@ export default function About() {
               Our Mission
             </span>
           </motion.h1>
-          <motion.p
-            className="font-rubik text-base lg:text-lg text-crypto-grey leading-7 max-w-[500px] mx-auto mb-12"
-            variants={itemVariants}
-          >
-            We're building the future of cryptocurrency trading with
-            cutting-edge technology, unmatched security, and a user-first
-            approach.
-          </motion.p>
         </motion.div>
       </div>
 

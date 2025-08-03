@@ -876,77 +876,295 @@ export default function Index() {
         <div className="bg-crypto-dark pb-16 lg:pb-24">
           <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
             <motion.div
-              className="max-w-[942px] mx-auto"
+              className="max-w-[1000px] mx-auto relative rounded-3xl overflow-hidden shadow-2xl"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+              }}
               variants={itemVariants}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              {/* Input Section */}
-              <div className="bg-gray-50 rounded-t-2xl p-8 lg:p-12">
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-end">
-                  <div className="flex-1 w-full">
-                    <label className="font-rubik text-xl text-crypto-dark mb-2 block">
-                      Enter your hash rate
-                    </label>
-                    <div className="border-b-2 border-crypto-grey pb-2">
-                      <input
-                        type="text"
-                        className="w-full bg-transparent text-xl text-crypto-dark font-rubik focus:outline-none"
-                        placeholder="Enter hash rate"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-48">
-                    <div className="relative">
-                      <div className="border-b-2 border-crypto-grey pb-2 flex items-center justify-between">
-                        <span className="font-rubik text-xl text-crypto-dark">
-                          TH/s
-                        </span>
-                        <motion.svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          className="cursor-pointer"
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          <path
-                            d="M13.1313 4.6875H2.86876C2.56095 4.6875 2.38907 5.0125 2.5797 5.23438L7.71095 11.1844C7.85782 11.3547 8.14064 11.3547 8.28907 11.1844L13.4203 5.23438C13.6109 5.0125 13.4391 4.6875 13.1313 4.6875Z"
-                            fill="#BDBDBD"
-                          />
-                        </motion.svg>
-                      </div>
-                    </div>
-                  </div>
-                  <motion.button
-                    className="bg-crypto-blue hover:bg-blue-600 text-white font-rubik font-medium text-lg px-8 py-4 rounded-4xl transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+              {/* Background decorative elements */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <motion.div
+                  className="absolute top-8 right-16"
+                  animate={{
+                    y: [-10, 10, -10],
+                    x: [-5, 5, -5],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <div className="w-4 h-4 bg-crypto-blue/30 rounded-full" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute bottom-8 left-16"
+                  animate={{
+                    y: [10, -10, 10],
+                    x: [5, -5, 5],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <div className="w-3 h-3 bg-white/20 rounded-full" />
+                </motion.div>
+
+                {/* Chart icon decoration */}
+                <motion.div
+                  className="absolute opacity-10"
+                  style={{ right: "60px", top: "30px" }}
+                  animate={{ rotate: [0, 360] }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <svg
+                    width="100"
+                    height="100"
+                    viewBox="0 0 100 100"
+                    fill="none"
                   >
-                    Calculate
-                  </motion.button>
-                </div>
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="50"
+                      fill="white"
+                      fillOpacity="0.1"
+                    />
+                    <path
+                      d="M30 60L40 50L50 55L60 40L70 35"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <circle
+                      cx="40"
+                      cy="50"
+                      r="3"
+                      fill="white"
+                      fillOpacity="0.8"
+                    />
+                    <circle
+                      cx="50"
+                      cy="55"
+                      r="3"
+                      fill="white"
+                      fillOpacity="0.8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="40"
+                      r="3"
+                      fill="white"
+                      fillOpacity="0.8"
+                    />
+                    <circle
+                      cx="70"
+                      cy="35"
+                      r="3"
+                      fill="white"
+                      fillOpacity="0.8"
+                    />
+                  </svg>
+                </motion.div>
               </div>
 
-              {/* Results Section */}
-              <div className="bg-white rounded-b-2xl p-8 lg:p-12 shadow-2xl">
+              {/* Content */}
+              <div className="relative z-10 p-8 lg:p-12">
+                {/* Input Section */}
+                <motion.div className="mb-8" variants={itemVariants}>
+                  <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-end">
+                    <motion.div
+                      className="flex-1 w-full"
+                      variants={itemVariants}
+                    >
+                      <label className="font-rubik text-lg text-white/90 mb-4 block font-medium">
+                        Hash Rate
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-4 text-white placeholder-white/50 font-rubik text-lg focus:outline-none focus:border-crypto-blue focus:bg-white/15 transition-all duration-300"
+                          placeholder="Enter your hash rate"
+                        />
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      className="w-full lg:w-48"
+                      variants={itemVariants}
+                    >
+                      <label className="font-rubik text-lg text-white/90 mb-4 block font-medium">
+                        Unit
+                      </label>
+                      <div className="relative">
+                        <select className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-4 text-white font-rubik text-lg focus:outline-none focus:border-crypto-blue focus:bg-white/15 transition-all duration-300 appearance-none cursor-pointer">
+                          <option
+                            value="TH/s"
+                            className="bg-crypto-dark text-white"
+                          >
+                            TH/s
+                          </option>
+                          <option
+                            value="GH/s"
+                            className="bg-crypto-dark text-white"
+                          >
+                            GH/s
+                          </option>
+                          <option
+                            value="MH/s"
+                            className="bg-crypto-dark text-white"
+                          >
+                            MH/s
+                          </option>
+                        </select>
+                        <motion.div
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path
+                              d="M13.1313 4.6875H2.86876C2.56095 4.6875 2.38907 5.0125 2.5797 5.23438L7.71095 11.1844C7.85782 11.3547 8.14064 11.3547 8.28907 11.1844L13.4203 5.23438C13.6109 5.0125 13.4391 4.6875 13.1313 4.6875Z"
+                              fill="rgba(255, 255, 255, 0.7)"
+                            />
+                          </svg>
+                        </motion.div>
+                      </div>
+                    </motion.div>
+
+                    <motion.button
+                      className="relative overflow-hidden group bg-crypto-blue hover:bg-blue-600 text-white font-rubik font-medium text-lg px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-crypto-blue/25 min-w-[140px]"
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {/* Button shine effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "100%" }}
+                        transition={{ duration: 0.6 }}
+                      />
+
+                      <span className="relative z-10 flex items-center gap-3">
+                        Calculate
+                        <motion.div
+                          className="w-6 h-6 bg-white rounded-full flex items-center justify-center"
+                          whileHover={{ rotate: 90, scale: 1.1 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M10.5 16.9999C10.3684 17.0007 10.2379 16.9755 10.1161 16.9257C9.99426 16.8759 9.88344 16.8026 9.79 16.7099C9.69627 16.617 9.62188 16.5064 9.57111 16.3845C9.52034 16.2626 9.4942 16.1319 9.4942 15.9999C9.4942 15.8679 9.52034 15.7372 9.57111 15.6154C9.62188 15.4935 9.69627 15.3829 9.79 15.2899L13.1 11.9999L9.92 8.68993C9.73375 8.50257 9.62921 8.24911 9.62921 7.98493C9.62921 7.72074 9.73375 7.46729 9.92 7.27993C10.013 7.1862 10.1236 7.11181 10.2454 7.06104C10.3673 7.01027 10.498 6.98413 10.63 6.98413C10.762 6.98413 10.8927 7.01027 11.0146 7.06104C11.1364 7.11181 11.247 7.1862 11.34 7.27993L15.2 11.2799C15.3832 11.4669 15.4859 11.7182 15.4859 11.9799C15.4859 12.2417 15.3832 12.493 15.2 12.6799L11.2 16.6799C11.1102 16.7769 11.0022 16.855 10.882 16.91C10.7619 16.9649 10.632 16.9955 10.5 16.9999Z"
+                              fill="#3671E9"
+                            />
+                          </svg>
+                        </motion.div>
+                      </span>
+                    </motion.button>
+                  </div>
+                </motion.div>
+
+                {/* Results Section */}
                 <motion.div
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 lg:p-10"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <p className="font-rubik font-medium text-base text-crypto-blue uppercase tracking-wider mb-4">
-                    ESTIMATED 24 HOUR REVENUE:
-                  </p>
-                  <h3 className="font-rubik font-bold text-2xl lg:text-4xl text-crypto-dark mb-4">
-                    0.055 130 59 ETH{" "}
-                    <span className="text-crypto-blue">($1275)</span>
-                  </h3>
-                  <p className="font-rubik text-base text-gray-500">
-                    Revenue will change based on mining difficulty and Ethereum
-                    price.
-                  </p>
+                  <div className="text-center">
+                    <motion.span
+                      className="inline-block px-4 py-2 bg-crypto-blue bg-opacity-20 rounded-full font-rubik font-medium text-sm text-white mb-6"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5, duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      ESTIMATED 24 HOUR REVENUE
+                    </motion.span>
+
+                    <motion.h3
+                      className="font-rubik font-bold text-3xl lg:text-5xl text-white mb-4"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.7, duration: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      0.055 130 59 ETH{" "}
+                      <span className="block lg:inline bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent">
+                        ($1,275.00)
+                      </span>
+                    </motion.h3>
+
+                    <motion.p
+                      className="font-rubik text-lg text-white/70 max-w-lg mx-auto"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.9, duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      Revenue will change based on mining difficulty and
+                      Ethereum price.
+                    </motion.p>
+
+                    {/* Additional stats */}
+                    <motion.div
+                      className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/20"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.1, duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="text-center">
+                        <div className="font-rubik font-bold text-xl text-white mb-1">
+                          7 Days
+                        </div>
+                        <div className="font-rubik text-white/70">
+                          $8,925.00
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-rubik font-bold text-xl text-white mb-1">
+                          30 Days
+                        </div>
+                        <div className="font-rubik text-white/70">
+                          $38,250.00
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-rubik font-bold text-xl text-white mb-1">
+                          365 Days
+                        </div>
+                        <div className="font-rubik text-white/70">
+                          $465,375.00
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
@@ -954,11 +1172,11 @@ export default function Index() {
         </div>
 
         {/* Light Background Trading Section */}
-        <div className="bg-gradient-to-b from-gray-50 to-gray-100 py-16 lg:py-24">
+        <div className="py-16 lg:pb-24">
           <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
             {/* Section Title */}
             <motion.h2
-              className="font-rubik font-bold text-3xl lg:text-5xl text-crypto-dark text-center mb-16 lg:mb-24 max-w-[741px] mx-auto leading-tight"
+              className="font-rubik font-bold text-3xl lg:text-5xl text-white text-center mb-16 lg:mb-24 max-w-[741px] mx-auto leading-tight"
               variants={itemVariants}
             >
               Trade securely and market the high growth cryptocurrencies.
@@ -968,10 +1186,10 @@ export default function Index() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
               {/* Bitcoin Card */}
               <motion.div
-                className="bg-[#2B076E] rounded-2xl p-8 text-center relative overflow-hidden"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300"
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <div className="relative z-10">
                   {/* Bitcoin Icon */}
@@ -1014,18 +1232,18 @@ export default function Index() {
                     <h3 className="font-rubik font-bold text-3xl text-white mb-1">
                       Bitcoin
                     </h3>
-                    <span className="font-rubik font-medium text-lg text-white opacity-70">
+                    <span className="font-rubik font-medium text-lg text-crypto-grey">
                       BTC
                     </span>
                   </div>
 
-                  <p className="font-rubik text-base text-white mb-8 leading-7">
+                  <p className="font-rubik text-base text-crypto-grey mb-8 leading-7">
                     Digital currency in which a record of transactions is
                     maintained.
                   </p>
 
                   <motion.button
-                    className="inline-flex items-center gap-6 bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl px-6 py-4"
+                    className="inline-flex items-center gap-4 bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl px-6 py-4"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -1051,10 +1269,10 @@ export default function Index() {
 
               {/* Ethereum Card */}
               <motion.div
-                className="bg-white rounded-2xl p-8 text-center shadow-2xl shadow-gray-500/10"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300"
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 {/* Ethereum Icon */}
                 <div className="w-20 h-20 mx-auto mb-8">
@@ -1075,45 +1293,41 @@ export default function Index() {
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="font-rubik font-bold text-3xl text-crypto-dark mb-1">
+                  <h3 className="font-rubik font-bold text-3xl text-white mb-1">
                     Ethereum
                   </h3>
-                  <span className="font-rubik font-medium text-lg text-gray-400">
+                  <span className="font-rubik font-medium text-lg text-crypto-grey">
                     ETH
                   </span>
                 </div>
 
-                <p className="font-rubik text-base text-gray-500 mb-8 leading-7">
+                <p className="font-rubik text-base text-crypto-grey mb-8 leading-7">
                   Blockchain technology to create and run decentralized digital
                   applications.
                 </p>
 
-                <motion.button
-                  className="w-16 h-16 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-crypto-blue transition-colors group"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="group-hover:scale-110 transition-transform"
-                  >
+                <div className="flex items-center justify-center text-crypto-blue">
+                  <span className="font-rubik text-sm font-medium mr-2">
+                    Learn More
+                  </span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path
-                      d="M10.5 17C10.3684 17.0008 10.2379 16.9755 10.1161 16.9258C9.99426 16.876 9.88344 16.8027 9.79 16.71C9.69627 16.617 9.62188 16.5064 9.57111 16.3846C9.52034 16.2627 9.4942 16.132 9.4942 16C9.4942 15.868 9.52034 15.7373 9.57111 15.6154C9.62188 15.4936 9.69627 15.383 9.79 15.29L13.1 12L9.92 8.69C9.73375 8.50264 9.62921 8.24919 9.62921 7.985C9.62921 7.72081 9.73375 7.46736 9.92 7.28C10.013 7.18627 10.1236 7.11188 10.2454 7.06111C10.3673 7.01034 10.498 6.9842 10.63 6.9842C10.762 6.9842 10.8927 7.01034 11.0146 7.06111C11.1364 7.11188 11.247 7.18627 11.34 7.28L15.2 11.28C15.3832 11.4669 15.4859 11.7182 15.4859 11.98C15.4859 12.2418 15.3832 12.4931 15.2 12.68L11.2 16.68C11.1102 16.7769 11.0022 16.8551 10.882 16.91C10.7619 16.965 10.632 16.9955 10.5 17Z"
-                      fill="#3671E9"
+                      d="M6 12L10 8L6 4"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
-                </motion.button>
+                </div>
               </motion.div>
 
               {/* Litecoin Card */}
               <motion.div
-                className="bg-white rounded-2xl p-8 text-center shadow-2xl shadow-gray-500/10"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300"
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 {/* Litecoin Icon */}
                 <div className="w-20 h-20 mx-auto mb-8">
@@ -1134,37 +1348,33 @@ export default function Index() {
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="font-rubik font-bold text-3xl text-crypto-dark mb-1">
+                  <h3 className="font-rubik font-bold text-3xl text-white mb-1">
                     Litecoin
                   </h3>
-                  <span className="font-rubik font-medium text-lg text-gray-400">
+                  <span className="font-rubik font-medium text-lg text-crypto-grey">
                     LTC
                   </span>
                 </div>
 
-                <p className="font-rubik text-base text-gray-500 mb-8 leading-7">
+                <p className="font-rubik text-base text-crypto-grey mb-8 leading-7">
                   Cryptocurrency that enables instant payments to anyone in the
                   world.
                 </p>
 
-                <motion.button
-                  className="w-16 h-16 border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-crypto-blue transition-colors group"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="group-hover:scale-110 transition-transform"
-                  >
+                <div className="flex items-center justify-center text-crypto-blue">
+                  <span className="font-rubik text-sm font-medium mr-2">
+                    Learn More
+                  </span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path
-                      d="M10.5 17C10.3684 17.0008 10.2379 16.9755 10.1161 16.9258C9.99426 16.876 9.88344 16.8027 9.79 16.71C9.69627 16.617 9.62188 16.5064 9.57111 16.3846C9.52034 16.2627 9.4942 16.132 9.4942 16C9.4942 15.868 9.52034 15.7373 9.57111 15.6154C9.62188 15.4936 9.69627 15.383 9.79 15.29L13.1 12L9.92 8.69C9.73375 8.50264 9.62921 8.24919 9.62921 7.985C9.62921 7.72081 9.73375 7.46736 9.92 7.28C10.013 7.18627 10.1236 7.11188 10.2454 7.06111C10.3673 7.01034 10.498 6.9842 10.63 6.9842C10.762 6.9842 10.8927 7.01034 11.0146 7.06111C11.1364 7.11188 11.247 7.18627 11.34 7.28L15.2 11.28C15.3832 11.4669 15.4859 11.7182 15.4859 11.98C15.4859 12.2418 15.3832 12.4931 15.2 12.68L11.2 16.68C11.1102 16.7769 11.0022 16.8551 10.882 16.91C10.7619 16.965 10.632 16.9955 10.5 17Z"
-                      fill="#3671E9"
+                      d="M6 12L10 8L6 4"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
-                </motion.button>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -1675,68 +1885,135 @@ export default function Index() {
         variants={containerVariants}
       >
         {/* Background Decorative Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Diagonal light streaks */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Animated gradient orbs */}
           <motion.div
-            className="absolute w-[200px] h-[1000px] opacity-30"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 40.77%, rgba(255, 255, 255, 0.30) 186.22%)",
-              transform: "rotate(-45deg)",
-              left: "395px",
-              top: "-85px",
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-crypto-blue bg-opacity-10 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.2, 0.1],
             }}
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 0.3, x: 0 }}
-            transition={{ delay: 0.5, duration: 1.5 }}
-            viewport={{ once: true }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
           <motion.div
-            className="absolute w-[200px] h-[1000px] opacity-30"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 40.77%, rgba(255, 255, 255, 0.30) 186.22%)",
-              transform: "rotate(-45deg)",
-              left: "35px",
-              top: "-17px",
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white bg-opacity-8 rounded-full blur-3xl"
+            animate={{
+              scale: [1.3, 1, 1.3],
+              opacity: [0.08, 0.15, 0.08],
             }}
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 0.3, x: 0 }}
-            transition={{ delay: 0.7, duration: 1.5 }}
-            viewport={{ once: true }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
+
+          {/* Floating elements */}
+          <motion.div
+            className="absolute top-20 right-32"
+            animate={{
+              y: [-10, 10, -10],
+              x: [-5, 5, -5],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <div className="w-4 h-4 bg-white/20 rounded-full" />
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-20 left-32"
+            animate={{
+              y: [10, -10, 10],
+              x: [5, -5, 5],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <div className="w-3 h-3 bg-white/15 rounded-full" />
+          </motion.div>
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] relative z-10">
           <motion.div
-            className="max-w-[1200px] mx-auto relative rounded-2xl overflow-hidden"
-            style={{ backgroundColor: "#3671E9" }}
+            className="max-w-[1000px] mx-auto relative rounded-3xl overflow-hidden shadow-2xl"
+            style={{
+              background:
+                "linear-gradient(135deg, #3671E9 0%, #3671E9CC 50%, #3671E9AA 100%)",
+            }}
             variants={itemVariants}
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            {/* Background crypto icons */}
-            <div className="absolute inset-0 overflow-hidden">
-              {/* Bitcoin icon background */}
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {/* Main decorative chart icon */}
               <motion.div
                 className="absolute opacity-10"
-                style={{ right: "85px", top: "48px" }}
+                style={{ right: "80px", top: "40px" }}
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
               >
-                <svg width="185" height="185" viewBox="0 0 185 185" fill="none">
-                  <path
-                    d="M161.65 90.394C164.5 70.967 149.76 60.453 129.42 53.483L136.05 27.0848L120.05 23.0851L113.65 48.797C109.42 47.769 105.08 46.74 100.74 45.826L107.14 19.9997L91.14 16L84.62 42.284C81.08 41.484 77.65 40.684 74.34 39.884V39.769L52.17 34.2842L47.94 51.426C47.94 51.426 59.83 54.168 59.6 54.282C66.11 55.882 67.25 60.225 67.02 63.653L59.48 93.708C59.94 93.822 60.51 93.936 61.2 94.279C60.63 94.165 60.05 94.051 59.48 93.822L48.97 135.876C48.17 137.818 46.11 140.79 41.66 139.647C41.77 139.875 30 136.79 30 136.79L22 155.188L42.91 160.445C46.8 161.474 50.57 162.388 54.34 163.416L47.71 190.043L63.71 194.042L70.34 167.644C74.68 168.787 79.02 169.93 83.14 170.958L76.62 197.242L92.62 201.242L99.25 174.615C126.68 179.758 147.25 177.701 155.82 152.903C162.79 133.019 155.47 121.477 141.08 113.935C151.7 111.535 159.59 104.564 161.65 90.394ZM124.96 141.818C120.05 161.702 86.45 150.96 75.6 148.217L84.39 112.906C95.25 115.649 130.22 121.02 124.96 141.818ZM129.99 90.051C125.42 108.221 97.54 98.964 88.51 96.679L96.51 64.682C105.54 66.967 134.68 71.195 129.99 90.051Z"
+                <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+                  <circle
+                    cx="70"
+                    cy="70"
+                    r="70"
                     fill="white"
-                    fillOpacity="0.16"
+                    fillOpacity="0.1"
+                  />
+                  <path
+                    d="M40 80L55 65L70 75L85 55L100 45"
+                    stroke="white"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <circle
+                    cx="55"
+                    cy="65"
+                    r="4"
+                    fill="white"
+                    fillOpacity="0.8"
+                  />
+                  <circle
+                    cx="70"
+                    cy="75"
+                    r="4"
+                    fill="white"
+                    fillOpacity="0.8"
+                  />
+                  <circle
+                    cx="85"
+                    cy="55"
+                    r="4"
+                    fill="white"
+                    fillOpacity="0.8"
+                  />
+                  <circle
+                    cx="100"
+                    cy="45"
+                    r="4"
+                    fill="white"
+                    fillOpacity="0.8"
                   />
                 </svg>
               </motion.div>
 
-              {/* Ethereum icon background */}
+              {/* Crypto icons background */}
               <motion.div
-                className="absolute opacity-10"
-                style={{ left: "102px", top: "-38px" }}
+                className="absolute opacity-8"
+                style={{ left: "60px", top: "60px" }}
                 animate={{ y: [-20, 20, -20] }}
                 transition={{
                   duration: 6,
@@ -1744,70 +2021,155 @@ export default function Index() {
                   ease: "easeInOut",
                 }}
               >
-                <svg width="181" height="259" viewBox="0 0 181 259" fill="none">
-                  <path
-                    d="M101.41 155.686L22 108.823L101.361 220.698L180.812 108.823L101.361 155.686H101.41ZM102.59 -38L23.2126 93.7462L102.59 140.69L182 93.7946L102.59 -38Z"
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="50"
                     fill="white"
-                    fillOpacity="0.16"
+                    fillOpacity="0.1"
+                  />
+                  <path
+                    d="M50 20L45 35L30 35L40 45L35 60L50 50L65 60L60 45L70 35L55 35L50 20Z"
+                    fill="white"
+                    fillOpacity="0.15"
                   />
                 </svg>
               </motion.div>
             </div>
 
             {/* Content */}
-            <div className="relative z-10 p-6 lg:p-12">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                {/* Left Content */}
-                <motion.div className="space-y-6" variants={slideInLeft}>
-                  <motion.h2
-                    className="font-rubik font-bold text-2xl lg:text-4xl text-white"
-                    variants={itemVariants}
-                  >
-                    Start mining now
-                  </motion.h2>
-                  <motion.p
-                    className="font-rubik text-base text-white leading-7 max-w-[348px]"
-                    variants={itemVariants}
-                  >
-                    Join now with CRAPPO to get the latest news and start mining
-                    now
-                  </motion.p>
-                </motion.div>
-
-                {/* Right Content - Email Subscription */}
-                <motion.div
-                  className="px-4 sm:px-6 md:px-0 space-y-6"
-                  variants={slideInRight}
+            <div className="relative z-10 px-8 lg:px-16 py-16 lg:py-20 text-center">
+              <motion.div className="mb-8" variants={itemVariants}>
+                {/* Enhanced title with better typography */}
+                <motion.h3
+                  className="font-rubik font-bold text-4xl lg:text-5xl text-white mb-6 leading-tight"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch sm:items-end w-full max-w-lg mx-auto">
-                    {/* Email Input */}
-                    <div className="flex-1 min-w-0">
-                      <motion.div className="relative" variants={itemVariants}>
-                        <label htmlFor="newsletter-email" className="sr-only">
-                          Email address
-                        </label>
-                        <input
-                          id="newsletter-email"
-                          type="email"
-                          placeholder="Enter your email"
-                          className="w-full bg-transparent text-white placeholder-white font-rubik text-sm sm:text-base focus:outline-none border-b border-white/40 py-2"
-                        />
-                      </motion.div>
-                    </div>
+                  Start mining now
+                </motion.h3>
 
-                    {/* Subscribe Button */}
-                    <motion.button
-                      type="submit"
-                      className="bg-white hover:bg-gray-100 transition-colors rounded-3xl px-5 sm:px-6 py-2.5 sm:py-3 font-rubik font-medium text-sm sm:text-base text-crypto-dark min-w-[120px] sm:min-w-[152px]"
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Subscribe
-                    </motion.button>
-                  </div>
+                {/* Enhanced description */}
+                <motion.p
+                  className="font-rubik text-xl lg:text-2xl text-white/90 max-w-[700px] mx-auto leading-relaxed"
+                  variants={itemVariants}
+                >
+                  Join now with CRAPPO to get the latest news and start mining
+                  now
+                </motion.p>
+              </motion.div>
+
+              {/* Email subscription form */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-lg mx-auto mb-12"
+                variants={itemVariants}
+              >
+                {/* Email Input */}
+                <motion.div className="flex-1 w-full" variants={itemVariants}>
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-4 text-white placeholder-white/70 font-rubik text-lg focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-300"
+                  />
                 </motion.div>
-              </div>
+
+                {/* Subscribe Button */}
+                <motion.button
+                  type="submit"
+                  className="relative overflow-hidden group bg-white text-crypto-blue hover:bg-gray-50 px-8 py-4 rounded-2xl font-rubik font-medium text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-white/20 min-w-[152px]"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {/* Button shine effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+
+                  {/* Button content */}
+                  <span className="relative z-10 flex items-center gap-3">
+                    Subscribe
+                    <motion.div
+                      className="w-6 h-6 bg-crypto-blue rounded-full flex items-center justify-center"
+                      whileHover={{ rotate: 90, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M10.5 16.9999C10.3684 17.0007 10.2379 16.9755 10.1161 16.9257C9.99426 16.8759 9.88344 16.8026 9.79 16.7099C9.69627 16.617 9.62188 16.5064 9.57111 16.3845C9.52034 16.2626 9.4942 16.1319 9.4942 15.9999C9.4942 15.8679 9.52034 15.7372 9.57111 15.6154C9.62188 15.4935 9.69627 15.3829 9.79 15.2899L13.1 11.9999L9.92 8.68993C9.73375 8.50257 9.62921 8.24911 9.62921 7.98493C9.62921 7.72074 9.73375 7.46729 9.92 7.27993C10.013 7.1862 10.1236 7.11181 10.2454 7.06104C10.3673 7.01027 10.498 6.98413 10.63 6.98413C10.762 6.98413 10.8927 7.01027 11.0146 7.06104C11.1364 7.11181 11.247 7.1862 11.34 7.27993L15.2 11.2799C15.3832 11.4669 15.4859 11.7182 15.4859 11.9799C15.4859 12.2417 15.3832 12.493 15.2 12.6799L11.2 16.6799C11.1102 16.7769 11.0022 16.855 10.882 16.91C10.7619 16.9649 10.632 16.9955 10.5 16.9999Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </motion.div>
+                  </span>
+                </motion.button>
+              </motion.div>
+
+              {/* Trust indicators */}
+              <motion.div
+                className="flex flex-wrap items-center justify-center gap-6 lg:gap-8 text-white/70"
+                variants={itemVariants}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 bg-green-400 rounded-full flex items-center justify-center">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M10 3L4.5 8.5L2 6"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium">
+                    Trusted by 10M+ users
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 bg-blue-400 rounded-full flex items-center justify-center">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M6 1L7.5 4.5L11 4.5L8.25 7L9.75 10.5L6 8.5L2.25 10.5L3.75 7L1 4.5L4.5 4.5L6 1Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium">4.9/5 Rating</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 bg-purple-400 rounded-full flex items-center justify-center">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M6 1V6L9 9"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle
+                        cx="6"
+                        cy="6"
+                        r="5"
+                        stroke="white"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium">24/7 Support</span>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
