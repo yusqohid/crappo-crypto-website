@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Index() {
   // Animation variants
@@ -71,374 +73,221 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-crypto-dark text-white overflow-hidden">
       {/* Header */}
-      <motion.header
-        className="relative z-10"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] py-[60px]">
-          {/* Top Navigation */}
+      <Navbar
+        containerVariants={containerVariants}
+        itemVariants={itemVariants}
+      />
+
+      {/* Hero Section */}
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] pb-[60px]">
+        {/* Hero Content */}
+        <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
+          {/* Left Content */}
           <motion.div
-            className="flex items-center justify-between mb-12 lg:mb-[183px]"
-            variants={itemVariants}
+            className="space-y-6 lg:space-y-8 order-last lg:order-first"
+            initial="hidden"
+            animate="visible"
+            variants={slideInLeft}
           >
-            {/* Logo */}
+            {/* Promotional Badge */}
             <motion.div
-              className="flex items-center gap-4"
+              className="inline-flex items-center bg-white/10 rounded-full px-2 py-1 max-w-fit mx-auto sm:mx-0"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                delay: 0.8,
+                duration: 0.6,
+                type: "spring",
+                stiffness: 200,
+              }}
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
             >
+              {/* Badge Section */}
               <motion.div
-                className="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center relative"
-                animate={pulseAnimation}
+                className="bg-white rounded-full px-3 py-1 shadow-md"
+                animate={{
+                  boxShadow: [
+                    "0 0 0 0 rgba(255,255,255,0.3)",
+                    "0 0 0 8px rgba(255,255,255,0)",
+                    "0 0 0 0 rgba(255,255,255,0)",
+                  ],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
               >
-                <motion.svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
+                <span className="font-rubik font-semibold text-sm sm:text-base text-crypto-dark tracking-wide uppercase">
+                  75% OFF
+                </span>
+              </motion.div>
+
+              {/* Description Text */}
+              <span className="mx-3 font-rubik text-sm sm:text-base text-white whitespace-nowrap">
+                Black Friday Weekend Deal
+              </span>
+            </motion.div>
+
+            {/* Main Heading */}
+            <motion.h1
+              className="font-rubik font-bold text-4xl md:text-5xl lg:text-[64px] lg:leading-[76px] text-white"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+              >
+                Fastest & secure
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
+              >
+                platform to invest
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.6, duration: 0.6 }}
+                className="bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent"
+              >
+                in crypto
+              </motion.span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              className="font-rubik text-base lg:text-lg text-crypto-grey leading-7 max-w-[435px]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.8, duration: 0.6 }}
+            >
+              Buy and sell cryptocurrencies, trusted by 10M wallets with over
+              $30 billion in transactions.
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.button
+              className="inline-flex items-center gap-6 bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl px-6 py-4 lg:px-8 lg:py-6 group"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2, duration: 0.6 }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 40px rgba(54, 113, 233, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="font-rubik font-medium text-lg text-white">
+                Try for FREE
+              </span>
+              <motion.div
+                className="w-8 h-8 bg-white rounded-full flex items-center justify-center"
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 90,
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="absolute"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
                 >
                   <path
-                    d="M19.9999 40C31.0456 40 39.9999 31.0457 39.9999 20C39.9999 8.9543 31.0456 0 19.9999 0C8.95424 0 -6.10352e-05 8.9543 -6.10352e-05 20C-6.10352e-05 31.0457 8.95424 40 19.9999 40Z"
-                    fill="white"
-                    fillOpacity="0.1"
+                    d="M10.5 16.9999C10.3684 17.0007 10.2379 16.9755 10.1161 16.9257C9.99426 16.8759 9.88344 16.8026 9.79 16.7099C9.69627 16.617 9.62188 16.5064 9.57111 16.3845C9.52034 16.2626 9.4942 16.1319 9.4942 15.9999C9.4942 15.8679 9.52034 15.7372 9.57111 15.6154C9.62188 15.4935 9.69627 15.3829 9.79 15.2899L13.1 11.9999L9.92 8.68993C9.73375 8.50257 9.62921 8.24911 9.62921 7.98493C9.62921 7.72074 9.73375 7.46729 9.92 7.27993C10.013 7.1862 10.1236 7.11181 10.2454 7.06104C10.3673 7.01027 10.498 6.98413 10.63 6.98413C10.762 6.98413 10.8927 7.01027 11.0146 7.06104C11.1364 7.11181 11.247 7.1862 11.34 7.27993L15.2 11.2799C15.3832 11.4669 15.4859 11.7182 15.4859 11.9799C15.4859 12.2417 15.3832 12.493 15.2 12.6799L11.2 16.6799C11.1102 16.7769 11.0022 16.855 10.882 16.91C10.7619 16.9649 10.632 16.9955 10.5 16.9999Z"
+                    fill="#3671E9"
                   />
-                  <path
-                    d="M18.8424 28.0463C14.9124 27.4707 11.8964 24.0828 11.8964 19.9891C11.8964 15.8954 14.9124 12.5075 18.8424 11.9322V7.69238C12.5855 8.29084 7.69232 13.5677 7.69232 19.9891C7.69232 26.4104 12.5855 31.687 18.8424 32.2858V28.0463Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M26.9983 12L26.8891 12.3711V23.1393L26.9983 23.2483L31.9968 20.2937L26.9983 12Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M26.9984 12L21.9999 20.2937L26.9984 23.2483V18.0217V12Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M26.9986 24.8742L26.937 24.9492V28.7851L26.9986 28.9648L32 21.9211L26.9986 24.8742Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M26.9984 28.9648V24.8742L21.9999 21.9211L26.9984 28.9648Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M26.9984 23.2482L31.9968 20.2937L26.9984 18.0217V23.2482Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M21.9999 20.2937L26.9983 23.2482V18.0217L21.9999 20.2937Z"
-                    fill="white"
-                  />
-                </motion.svg>
+                </svg>
               </motion.div>
-              <motion.span
-                className="font-inter font-semibold text-lg tracking-[0.72px]"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              >
-                CRAPPO
-              </motion.span>
-            </motion.div>
-
-            {/* Navigation */}
-            <motion.nav
-              className="hidden lg:flex items-center gap-[32px]"
-              variants={containerVariants}
-            >
-              {["Products", "Features", "About", "Contact"].map(
-                (item, index) => (
-                  <motion.div
-                    key={item}
-                    variants={itemVariants}
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      to={`/${item.toLowerCase()}`}
-                      className="font-rubik text-base text-white hover:text-crypto-grey transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </motion.div>
-                ),
-              )}
-            </motion.nav>
-
-            {/* Auth Buttons */}
-            <motion.div
-              className="hidden lg:flex items-center gap-6"
-              variants={itemVariants}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link
-                  to="/login"
-                  className="font-rubik font-medium text-base text-white hover:text-crypto-grey transition-colors"
-                >
-                  Login
-                </Link>
-              </motion.div>
-              <div className="w-px h-6 bg-white opacity-30"></div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link
-                  to="/register"
-                  className="px-8 py-[14px] bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl font-rubik font-medium text-base text-white"
-                >
-                  Register
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            {/* Mobile Menu Button */}
-            <motion.button
-              className="lg:hidden p-2"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
             </motion.button>
           </motion.div>
 
-          {/* Hero Content */}
-          <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
-            {/* Left Content */}
-            <motion.div
-              className="space-y-6 lg:space-y-8 order-last lg:order-first"
-              initial="hidden"
-              animate="visible"
-              variants={slideInLeft}
-            >
-              {/* Promotional Badge */}
-              <motion.div
-                className="inline-flex items-center bg-white/10 rounded-full px-2 py-1 max-w-fit mx-auto sm:mx-0"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{
-                  delay: 0.8,
-                  duration: 0.6,
-                  type: "spring",
-                  stiffness: 200,
-                }}
+          {/* Right Content - Illustration */}
+          <motion.div
+            className="relative flex justify-center lg:justify-end order-first lg:order-last"
+            initial="hidden"
+            animate="visible"
+            variants={slideInRight}
+          >
+            <div className="relative w-full max-w-[604px] h-[300px] md:h-[400px] lg:h-[585px]">
+              {/* Main Illustration */}
+              <motion.img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/6a568ddf4d23ad9ba50ed984314961184dbb430b?width=1208"
+                alt=""
+                className="w-full h-full object-contain"
+                animate={floatingAnimation}
                 whileHover={{ scale: 1.05 }}
-              >
-                {/* Badge Section */}
+                transition={{ duration: 0.3 }}
+              />
+
+              {/* Background decorative elements */}
+              <div className="absolute inset-0 -z-10 hidden lg:block">
+                {/* Decorative lines */}
                 <motion.div
-                  className="bg-white rounded-full px-3 py-1 shadow-md"
-                  animate={{
-                    boxShadow: [
-                      "0 0 0 0 rgba(255,255,255,0.3)",
-                      "0 0 0 8px rgba(255,255,255,0)",
-                      "0 0 0 0 rgba(255,255,255,0)",
-                    ],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute top-1/2 left-1/4 w-[120px] h-[400px] opacity-20"
+                  initial={{ opacity: 0, rotate: -120 }}
+                  animate={{ opacity: 0.2, rotate: -120 }}
+                  transition={{ delay: 2.5, duration: 1 }}
                 >
-                  <span className="font-rubik font-semibold text-sm sm:text-base text-crypto-dark tracking-wide uppercase">
-                    75% OFF
-                  </span>
-                </motion.div>
-
-                {/* Description Text */}
-                <span className="mx-3 font-rubik text-sm sm:text-base text-white whitespace-nowrap">
-                  Black Friday Weekend Deal
-                </span>
-              </motion.div>
-
-              {/* Main Heading */}
-              <motion.h1
-                className="font-rubik font-bold text-4xl md:text-5xl lg:text-[64px] lg:leading-[76px] text-white"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-              >
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2, duration: 0.6 }}
-                >
-                  Fastest & secure
-                </motion.span>
-                <br />
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.4, duration: 0.6 }}
-                >
-                  platform to invest
-                </motion.span>
-                <br />
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.6, duration: 0.6 }}
-                  className="bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent"
-                >
-                  in crypto
-                </motion.span>
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                className="font-rubik text-base lg:text-lg text-crypto-grey leading-7 max-w-[435px]"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.8, duration: 0.6 }}
-              >
-                Buy and sell cryptocurrencies, trusted by 10M wallets with over
-                $30 billion in transactions.
-              </motion.p>
-
-              {/* CTA Button */}
-              <motion.button
-                className="inline-flex items-center gap-6 bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl px-6 py-4 lg:px-8 lg:py-6 group"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2, duration: 0.6 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(54, 113, 233, 0.4)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="font-rubik font-medium text-lg text-white">
-                  Try for FREE
-                </span>
-                <motion.div
-                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center"
-                  whileHover={{
-                    scale: 1.2,
-                    rotate: 90,
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.5 16.9999C10.3684 17.0007 10.2379 16.9755 10.1161 16.9257C9.99426 16.8759 9.88344 16.8026 9.79 16.7099C9.69627 16.617 9.62188 16.5064 9.57111 16.3845C9.52034 16.2626 9.4942 16.1319 9.4942 15.9999C9.4942 15.8679 9.52034 15.7372 9.57111 15.6154C9.62188 15.4935 9.69627 15.3829 9.79 15.2899L13.1 11.9999L9.92 8.68993C9.73375 8.50257 9.62921 8.24911 9.62921 7.98493C9.62921 7.72074 9.73375 7.46729 9.92 7.27993C10.013 7.1862 10.1236 7.11181 10.2454 7.06104C10.3673 7.01027 10.498 6.98413 10.63 6.98413C10.762 6.98413 10.8927 7.01027 11.0146 7.06104C11.1364 7.11181 11.247 7.1862 11.34 7.27993L15.2 11.2799C15.3832 11.4669 15.4859 11.7182 15.4859 11.9799C15.4859 12.2417 15.3832 12.493 15.2 12.6799L11.2 16.6799C11.1102 16.7769 11.0022 16.855 10.882 16.91C10.7619 16.9649 10.632 16.9955 10.5 16.9999Z"
-                      fill="#3671E9"
-                    />
-                  </svg>
-                </motion.div>
-              </motion.button>
-            </motion.div>
-
-            {/* Right Content - Illustration */}
-            <motion.div
-              className="relative flex justify-center lg:justify-end order-first lg:order-last"
-              initial="hidden"
-              animate="visible"
-              variants={slideInRight}
-            >
-              <div className="relative w-full max-w-[604px] h-[300px] md:h-[400px] lg:h-[585px]">
-                {/* Main Illustration */}
-                <motion.img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/6a568ddf4d23ad9ba50ed984314961184dbb430b?width=1208"
-                  alt=""
-                  className="w-full h-full object-contain"
-                  animate={floatingAnimation}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                {/* Background decorative elements */}
-                <div className="absolute inset-0 -z-10 hidden lg:block">
-                  {/* Decorative lines */}
-                  <motion.div
-                    className="absolute top-1/2 left-1/4 w-[120px] h-[400px] opacity-20"
-                    initial={{ opacity: 0, rotate: -120 }}
-                    animate={{ opacity: 0.2, rotate: -120 }}
-                    transition={{ delay: 2.5, duration: 1 }}
-                  >
-                    <motion.img
-                      src="https://api.builder.io/api/v1/image/assets/TEMP/625ce806043f844d7dafb6d866384465af38e111?width=240"
-                      alt=""
-                      className="w-full h-full object-contain transform -rotate-[120deg]"
-                      animate={{ rotate: [-120, -110, -120] }}
-                      transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  </motion.div>
-                  <motion.div
-                    className="absolute top-1/2 right-1/4 w-[120px] h-[400px] opacity-20 transform rotate-60"
-                    initial={{ opacity: 0, rotate: 60 }}
-                    animate={{ opacity: 0.2, rotate: 60 }}
+                  <motion.img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/625ce806043f844d7dafb6d866384465af38e111?width=240"
+                    alt=""
+                    className="w-full h-full object-contain transform -rotate-[120deg]"
+                    animate={{ rotate: [-120, -110, -120] }}
                     transition={{
-                      duration: 8,
+                      duration: 6,
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                  ></motion.div>
-                </div>
-
-                {/* Floating elements around illustration */}
+                  />
+                </motion.div>
                 <motion.div
-                  className="absolute top-20 right-10 w-4 h-4 bg-crypto-blue rounded-full opacity-60"
-                  animate={{
-                    y: [-20, 20, -20],
-                    x: [-10, 10, -10],
-                  }}
+                  className="absolute top-1/2 right-1/4 w-[120px] h-[400px] opacity-20 transform rotate-60"
+                  initial={{ opacity: 0, rotate: 60 }}
+                  animate={{ opacity: 0.2, rotate: 60 }}
                   transition={{
-                    duration: 5,
+                    duration: 8,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                />
-                <motion.div
-                  className="absolute bottom-20 left-10 w-6 h-6 bg-white bg-opacity-20 rounded-full"
-                  animate={{
-                    y: [20, -20, 20],
-                    x: [10, -10, 10],
-                  }}
-                  transition={{
-                    duration: 7,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                ></motion.div>
               </div>
-            </motion.div>
-          </div>
+
+              {/* Floating elements around illustration */}
+              <motion.div
+                className="absolute top-20 right-10 w-4 h-4 bg-crypto-blue rounded-full opacity-60"
+                animate={{
+                  y: [-20, 20, -20],
+                  x: [-10, 10, -10],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="absolute bottom-20 left-10 w-6 h-6 bg-white bg-opacity-20 rounded-full"
+                animate={{
+                  y: [20, -20, 20],
+                  x: [10, -10, 10],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
+          </motion.div>
         </div>
-      </motion.header>
+      </div>
 
       {/* Why CRAPPO Section */}
       <motion.section
@@ -1683,293 +1532,11 @@ export default function Index() {
       </motion.section>
 
       {/* Footer */}
-      <motion.footer
-        className="bg-crypto-dark py-16 lg:py-20"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={containerVariants}
-      >
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 lg:gap-4 mb-16">
-            {/* Logo Section */}
-            <motion.div
-              className="space-y-6 lg:col-span-1"
-              variants={itemVariants}
-            >
-              <div className="flex items-center gap-4">
-                <motion.div
-                  className="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center relative"
-                  animate={pulseAnimation}
-                >
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path
-                      d="M19.9999 40C31.0456 40 39.9999 31.0457 39.9999 20C39.9999 8.9543 31.0456 0 19.9999 0C8.95424 0 -6.10352e-05 8.9543 -6.10352e-05 20C-6.10352e-05 31.0457 8.95424 40 19.9999 40Z"
-                      fill="white"
-                      fillOpacity="0.1"
-                    />
-                    <path
-                      d="M18.8424 28.0463C14.9124 27.4707 11.8964 24.0828 11.8964 19.9891C11.8964 15.8954 14.9124 12.5075 18.8424 11.9322V7.69238C12.5855 8.29084 7.69232 13.5677 7.69232 19.9891C7.69232 26.4104 12.5855 31.687 18.8424 32.2858V28.0463Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M26.9983 12L26.8891 12.3711V23.1393L26.9983 23.2483L31.9968 20.2937L26.9983 12Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M26.9984 12L21.9999 20.2937L26.9984 23.2483V18.0217V12Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M26.9986 24.8742L26.937 24.9492V28.7851L26.9986 28.9648L32 21.9211L26.9986 24.8742Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M26.9984 28.9648V24.8742L21.9999 21.9211L26.9984 28.9648Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M26.9984 23.2482L31.9968 20.2937L26.9984 18.0217V23.2482Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M21.9999 20.2937L26.9983 23.2482V18.0217L21.9999 20.2937Z"
-                      fill="white"
-                    />
-                  </svg>
-                </motion.div>
-                <span className="font-inter font-semibold text-lg tracking-[0.72px] text-white">
-                  CRAPPO
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Quick Links */}
-            <motion.div className="space-y-6" variants={itemVariants}>
-              <h3 className="font-rubik font-medium text-xl text-white">
-                Quick Link
-              </h3>
-              <ul className="space-y-4">
-                {["Home", "Products", "About", "Features", "Contact"].map(
-                  (item) => (
-                    <motion.li
-                      key={item}
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <Link
-                        to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                        className="font-rubik text-base text-gray-300 hover:text-white transition-colors"
-                      >
-                        {item}
-                      </Link>
-                    </motion.li>
-                  ),
-                )}
-              </ul>
-            </motion.div>
-
-            {/* Resources */}
-            <motion.div className="space-y-6" variants={itemVariants}>
-              <h3 className="font-rubik font-medium text-xl text-white">
-                Resources
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Download Whitepaper",
-                  "Smart Token",
-                  "Blockchain Explorer",
-                  "Crypto API",
-                  "Interest",
-                ].map((item) => (
-                  <motion.li
-                    key={item}
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <a
-                      href="#"
-                      className="font-rubik text-base text-gray-400 hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Payment Systems */}
-            <motion.div className="space-y-6" variants={itemVariants}>
-              <h3 className="font-rubik font-medium text-xl lg:text-2xl text-white leading-tight">
-                We accept following payment systems
-              </h3>
-
-              {/* Payment Icons */}
-              <div className="grid grid-cols-3 gap-4">
-                {/* Visa */}
-                <motion.div
-                  className="w-24 h-16 bg-gray-200 bg-opacity-5 rounded-lg flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <g clipPath="url(#clip0_1_493)">
-                      <path
-                        d="M34.8931 16.6551C33.7776 16.213 32.5985 15.9912 31.4112 16C27.5718 16 24.8602 18.1037 24.841 21.1236C24.817 23.3421 26.7679 24.5924 28.2437 25.3336C29.7579 26.0958 30.2642 26.576 30.2594 27.2573C30.2498 28.2935 29.05 28.7633 27.9341 28.7633C26.4008 28.7633 25.5633 28.531 24.2747 27.9489L23.7972 27.7062L23.2525 31.1828C24.1859 31.6056 25.8681 31.9684 27.6054 31.9998C31.6872 31.9998 34.3556 29.9091 34.3868 26.6961C34.4204 24.9238 33.3645 23.5849 31.1425 22.4782C29.7915 21.7604 28.954 21.2802 28.954 20.552C28.954 19.9073 29.6715 19.2182 31.1713 19.2182C32.1694 19.192 33.1614 19.3957 34.082 19.8159L34.442 19.9908L34.9867 16.6316L34.8931 16.6551ZM44.8564 16.2819H41.8569C40.9234 16.2819 40.2203 16.5612 39.8124 17.5687L34.0436 31.7831H38.1254L38.9413 29.4523L43.923 29.4575C44.0405 30.003 44.4005 31.7831 44.4005 31.7831H47.9999L44.8564 16.2819ZM19.3194 16.1514H23.2093L20.776 31.6604H16.891L19.3194 16.1462V16.1514ZM9.44492 24.6994L9.84806 26.8527L13.6491 16.2819H17.7693L11.6478 31.7622H7.53721L4.17771 18.6545C4.1233 18.4383 3.99552 18.2527 3.82017 18.135C2.60931 17.4547 1.32633 16.9384 -6.10352e-05 16.5977L0.0527309 16.2715H6.31339C7.16286 16.308 7.84676 16.5977 8.07473 17.5843L9.44252 24.7072V24.6994H9.44492ZM40.0571 26.2811L41.6073 21.9431C41.5881 21.9901 41.9265 21.0479 42.1232 20.4658L42.3896 21.8048L43.2894 26.2785H40.0547V26.2811H40.0571Z"
-                        fill="#E0E0E0"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_493">
-                        <rect width="48" height="48" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </motion.div>
-
-                {/* Mastercard */}
-                <motion.div
-                  className="w-24 h-16 bg-gray-200 bg-opacity-5 rounded-lg flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <svg width="48" height="38" viewBox="0 0 48 38" fill="none">
-                    <path
-                      d="M17.4935 7.22754H30.4592V30.9539H17.4935V7.22754Z"
-                      fill="#BDBDBD"
-                    />
-                    <path
-                      d="M18.3167 19.091C18.3167 14.2703 20.5393 9.99445 23.9556 7.22771C21.4449 5.21562 18.2756 4 14.8181 4C6.62681 4 0 10.7489 0 19.091C0 27.4328 6.62681 34.1819 14.8179 34.1819C18.2754 34.1819 21.4447 32.9663 23.9556 30.954C20.5393 28.2293 18.3167 23.9116 18.3167 19.091Z"
-                      fill="#828282"
-                    />
-                    <path
-                      d="M47.9524 19.091C47.9524 27.4328 41.3256 34.1819 33.1345 34.1819C29.677 34.1819 26.5076 32.9663 23.9968 30.954C27.4543 28.1875 29.6359 23.9116 29.6359 19.091C29.6359 14.2703 27.4131 9.99445 23.9968 7.22771C26.5075 5.21562 29.677 4 33.1345 4C41.3256 4 47.9526 10.7909 47.9526 19.091H47.9524Z"
-                      fill="#E0E0E0"
-                    />
-                  </svg>
-                </motion.div>
-
-                {/* Bitcoin */}
-                <motion.div
-                  className="w-24 h-16 bg-gray-200 bg-opacity-5 rounded-lg flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <g clipPath="url(#clip0_1_482)">
-                      <path
-                        d="M39.4018 24.8368C36.7296 35.5568 25.8685 42.0733 15.1638 39.401C4.44354 36.7288 -2.07302 25.8682 0.599319 15.1637C3.27151 4.44366 14.1168 -2.0729 24.8371 0.599443C35.5418 3.25601 42.0742 14.1166 39.4018 24.8368Z"
-                        fill="#E0E0E0"
-                      />
-                      <path
-                        d="M29.5231 17.5081C29.9138 14.8518 27.8981 13.4143 25.1169 12.4612L26.0231 8.85181L23.8356 8.30493L22.9606 11.8206C22.3825 11.6799 21.7888 11.5393 21.195 11.4143L22.07 7.88306L19.8825 7.33618L18.9919 10.9299C18.5075 10.8206 18.0388 10.7112 17.5856 10.6018V10.5862L14.5544 9.83618L13.9763 12.1799C13.9763 12.1799 15.6013 12.5549 15.57 12.5706C16.4606 12.7893 16.6169 13.3831 16.5856 13.8518L15.5544 17.9612C15.6169 17.9768 15.695 17.9924 15.7888 18.0393C15.7106 18.0237 15.6325 18.0081 15.5544 17.9768L14.1169 23.7268C14.0075 23.9924 13.7263 24.3987 13.1169 24.2424C13.1325 24.2737 11.5231 23.8518 11.5231 23.8518L10.4294 26.3674L13.2888 27.0862C13.82 27.2268 14.3356 27.3518 14.8513 27.4924L13.945 31.1331L16.1325 31.6799L17.0388 28.0706C17.6325 28.2268 18.2263 28.3831 18.7888 28.5237L17.8981 32.1174L20.0856 32.6643L20.9919 29.0237C24.7419 29.7268 27.5544 29.4456 28.7263 26.0549C29.6794 23.3362 28.6794 21.7581 26.7106 20.7268C28.1638 20.3987 29.2419 19.4456 29.5231 17.5081ZM24.5075 24.5393C23.8356 27.2581 19.2419 25.7893 17.7575 25.4143L18.9606 20.5862C20.445 20.9612 25.2263 21.6956 24.5075 24.5393ZM25.195 17.4612C24.57 19.9456 20.7575 18.6799 19.5231 18.3674L20.6169 13.9924C21.8513 14.3049 25.8356 14.8831 25.195 17.4612Z"
-                        fill="#0D0D2B"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1_482">
-                        <rect width="40" height="40" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="flex flex-col lg:flex-row justify-between items-center pt-8 border-t border-gray-600">
-            {/* Copyright */}
-            <motion.p
-              className="font-rubik text-base text-white mb-6 lg:mb-0"
-              variants={itemVariants}
-            >
-              ©2021 CRAPPO. All rights reserved
-            </motion.p>
-
-            {/* Social Media Links */}
-            <motion.div
-              className="flex items-center gap-6"
-              variants={containerVariants}
-            >
-              {/* Facebook */}
-              <motion.a
-                href="#"
-                className="w-6 h-6 text-white hover:text-crypto-blue transition-colors"
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M15.12 5.32003H17V2.14003C16.0897 2.04538 15.1751 1.99865 14.26 2.00003C11.54 2.00003 9.67999 3.66003 9.67999 6.70003V9.32003H6.60999V12.88H9.67999V22H13.36V12.88H16.42L16.88 9.32003H13.36V7.05003C13.36 6.00003 13.64 5.32003 15.12 5.32003Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </motion.a>
-
-              {/* Instagram */}
-              <motion.a
-                href="#"
-                className="w-6 h-6 text-white hover:text-crypto-blue transition-colors"
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M17.34 5.46C17.1027 5.46 16.8707 5.53038 16.6733 5.66224C16.476 5.79409 16.3222 5.98151 16.2313 6.20078C16.1405 6.42005 16.1168 6.66133 16.1631 6.89411C16.2094 7.12689 16.3236 7.34071 16.4915 7.50853C16.6593 7.67635 16.8731 7.79064 17.1059 7.83694C17.3387 7.88324 17.5799 7.85948 17.7992 7.76866C18.0185 7.67783 18.2059 7.52402 18.3378 7.32668C18.4696 7.12935 18.54 6.89734 18.54 6.66C18.54 6.34174 18.4136 6.03652 18.1885 5.81147C17.9635 5.58643 17.6583 5.46 17.34 5.46ZM21.94 7.88C21.9206 7.0503 21.7652 6.2294 21.48 5.45C21.2257 4.78313 20.83 4.17928 20.32 3.68C19.8248 3.16743 19.2196 2.77418 18.55 2.53C17.7727 2.23616 16.9508 2.07721 16.12 2.06C15.06 2 14.72 2 12 2C9.28 2 8.94 2 7.88 2.06C7.04915 2.07721 6.22734 2.23616 5.45 2.53C4.78168 2.77665 4.17693 3.16956 3.68 3.68C3.16743 4.17518 2.77418 4.78044 2.53 5.45C2.23616 6.22734 2.07721 7.04915 2.06 7.88C2 8.94 2 9.28 2 12C2 14.72 2 15.06 2.06 16.12C2.07721 16.9508 2.23616 17.7727 2.53 18.55C2.77418 19.2196 3.16743 19.8248 3.68 20.32C4.17693 20.8304 4.78168 21.2234 5.45 21.47C6.22734 21.7638 7.04915 21.9228 7.88 21.94C8.94 22 9.28 22 12 22C14.72 22 15.06 22 16.12 21.94C16.9508 21.9228 17.7727 21.7638 18.55 21.47C19.2196 21.2258 19.8248 20.8326 20.32 20.32C20.8322 19.8226 21.2283 19.2182 21.48 18.55C21.7652 17.7706 21.9206 16.9497 21.94 16.12C21.94 15.06 22 14.72 22 12C22 9.28 22 8.94 21.94 7.88ZM20.14 16C20.1327 16.6348 20.0178 17.2637 19.8 17.86C19.6403 18.2952 19.3839 18.6884 19.05 19.01C18.7256 19.3405 18.3332 19.5964 17.9 19.76C17.3037 19.9778 16.6748 20.0927 16.04 20.1C15.04 20.15 14.67 20.16 12.04 20.16C9.41 20.16 9.04 20.16 8.04 20.1C7.38089 20.1123 6.72459 20.0109 6.1 19.8C5.68578 19.6281 5.31136 19.3728 5 19.05C4.66809 18.7287 4.41484 18.3352 4.26 17.9C4.01586 17.2952 3.88044 16.6519 3.86 16C3.86 15 3.8 14.63 3.8 12C3.8 9.37 3.8 9 3.86 8C3.86448 7.35106 3.98295 6.70795 4.21 6.1C4.38605 5.67791 4.65627 5.30166 5 5C5.30381 4.65617 5.67929 4.3831 6.1 4.2C6.70955 3.98004 7.352 3.86508 8 3.86C9 3.86 9.37 3.8 12 3.8C14.63 3.8 15 3.8 16 3.86C16.6348 3.86728 17.2637 3.98225 17.86 4.2C18.3144 4.36865 18.7223 4.64285 19.05 5C19.3777 5.30718 19.6338 5.68273 19.8 6.1C20.0223 6.70893 20.1373 7.35178 20.14 8C20.19 9 20.2 9.37 20.2 12C20.2 14.63 20.19 15 20.14 16ZM12 6.87C10.9858 6.87198 9.99496 7.17453 9.15265 7.73942C8.31035 8.30431 7.65438 9.1062 7.26763 10.0438C6.88089 10.9813 6.78072 12.0125 6.97979 13.0069C7.17886 14.0014 7.66824 14.9145 8.38608 15.631C9.10392 16.3474 10.018 16.835 11.0129 17.0321C12.0077 17.2293 13.0387 17.1271 13.9755 16.7385C14.9123 16.35 15.7129 15.6924 16.2761 14.849C16.8394 14.0056 17.14 13.0142 17.14 12C17.1413 11.3251 17.0092 10.6566 16.7512 10.033C16.4933 9.40931 16.1146 8.84281 15.6369 8.36605C15.1592 7.88929 14.5919 7.51168 13.9678 7.25493C13.3436 6.99818 12.6749 6.86736 12 6.87ZM12 15.33C11.3414 15.33 10.6976 15.1347 10.15 14.7688C9.60234 14.4029 9.17552 13.8828 8.92348 13.2743C8.67144 12.6659 8.6055 11.9963 8.73398 11.3503C8.86247 10.7044 9.17963 10.111 9.64533 9.64533C10.111 9.17963 10.7044 8.86247 11.3503 8.73398C11.9963 8.6055 12.6659 8.67144 13.2743 8.92348C13.8828 9.17552 14.4029 9.60234 14.7688 10.15C15.1347 10.6976 15.33 11.3414 15.33 12C15.33 12.4373 15.2439 12.8703 15.0765 13.2743C14.9092 13.6784 14.6639 14.0454 14.3547 14.3547C14.0454 14.6639 13.6784 14.9092 13.2743 15.0765C12.8703 15.2439 12.4373 15.33 12 15.33Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </motion.a>
-
-              {/* YouTube */}
-              <motion.a
-                href="#"
-                className="w-6 h-6 text-white hover:text-crypto-blue transition-colors"
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M23 9.70998C23.0495 8.27864 22.7365 6.858 22.09 5.57998C21.6514 5.05558 21.0427 4.70169 20.37 4.57998C17.5875 4.32751 14.7936 4.22403 12 4.26998C9.21667 4.22194 6.43274 4.32208 3.66003 4.56998C3.11185 4.6697 2.60454 4.92683 2.20003 5.30998C1.30003 6.13998 1.20003 7.55998 1.10003 8.75998C0.954939 10.9175 0.954939 13.0824 1.10003 15.24C1.12896 15.9154 1.22952 16.5858 1.40003 17.24C1.5206 17.745 1.76455 18.2123 2.11003 18.6C2.51729 19.0034 3.03641 19.2752 3.60003 19.38C5.75594 19.6461 7.92824 19.7564 10.1 19.71C13.6 19.76 16.67 19.71 20.3 19.43C20.8775 19.3316 21.4112 19.0595 21.83 18.65C22.11 18.3699 22.3191 18.0271 22.44 17.65C22.7977 16.5526 22.9733 15.4041 22.96 14.25C23 13.69 23 10.31 23 9.70998ZM9.74003 14.85V8.65998L15.66 11.77C14 12.69 11.81 13.73 9.74003 14.85Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </motion.a>
-
-              {/* Twitter */}
-              <motion.a
-                href="#"
-                className="w-6 h-6 text-white hover:text-crypto-blue transition-colors"
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M22 5.79997C21.2483 6.12606 20.4534 6.34163 19.64 6.43997C20.4982 5.92729 21.1413 5.12075 21.45 4.16997C20.6436 4.65003 19.7608 4.98826 18.84 5.16997C18.2245 4.50254 17.405 4.05826 16.5098 3.90682C15.6147 3.75537 14.6945 3.90532 13.8938 4.33315C13.093 4.76099 12.4569 5.4425 12.0852 6.2708C11.7135 7.09911 11.6273 8.02736 11.84 8.90997C10.2094 8.82749 8.61444 8.40292 7.15865 7.66383C5.70287 6.92474 4.41885 5.88766 3.39 4.61997C3.02914 5.25013 2.83952 5.96379 2.84 6.68997C2.83872 7.36435 3.00422 8.02858 3.32176 8.62353C3.63929 9.21848 4.09902 9.72568 4.66 10.1C4.00798 10.0822 3.36989 9.90726 2.8 9.58997V9.63997C2.80489 10.5849 3.13599 11.4991 3.73731 12.2279C4.33864 12.9568 5.17326 13.4556 6.1 13.64C5.74326 13.7485 5.37287 13.8058 5 13.81C4.74189 13.807 4.48442 13.7835 4.23 13.74C4.49391 14.5528 5.00462 15.2631 5.69107 15.7721C6.37753 16.2811 7.20558 16.5635 8.06 16.58C6.6172 17.7152 4.83588 18.3348 3 18.34C2.66574 18.3411 2.33174 18.321 2 18.28C3.87443 19.4902 6.05881 20.1327 8.29 20.13C9.82969 20.146 11.3571 19.855 12.7831 19.274C14.2091 18.6931 15.505 17.8338 16.5952 16.7465C17.6854 15.6591 18.548 14.3654 19.1326 12.9409C19.7172 11.5164 20.012 9.98969 20 8.44997C20 8.27996 20 8.09997 20 7.91997C20.7847 7.33478 21.4615 6.61739 22 5.79997Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </motion.a>
-
-              {/* LinkedIn */}
-              <motion.a
-                href="#"
-                className="w-6 h-6 text-white hover:text-crypto-blue transition-colors"
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M20.47 1.9999H3.53C3.33958 1.99725 3.1505 2.03214 2.97356 2.10258C2.79663 2.17302 2.6353 2.27762 2.4988 2.41041C2.36229 2.5432 2.25328 2.70158 2.17799 2.87651C2.1027 3.05143 2.06261 3.23947 2.06 3.4299V20.5699C2.06261 20.7603 2.1027 20.9484 2.17799 21.1233C2.25328 21.2982 2.36229 21.4566 2.4988 21.5894C2.6353 21.7222 2.79663 21.8268 2.97356 21.8972C3.1505 21.9676 3.33958 22.0025 3.53 21.9999H20.47C20.6604 22.0025 20.8495 21.9676 21.0264 21.8972C21.2034 21.8268 21.3647 21.7222 21.5012 21.5894C21.6377 21.4566 21.7467 21.2982 21.822 21.1233C21.8973 20.9484 21.9374 20.7603 21.94 20.5699V3.4299C21.9374 3.23947 21.8973 3.05143 21.822 2.87651C21.7467 2.70158 21.6377 2.5432 21.5012 2.41041C21.3647 2.27762 21.2034 2.17302 21.0264 2.10258C20.8495 2.03214 20.6604 1.99725 20.47 1.9999ZM8.09 18.7399H5.09V9.7399H8.09V18.7399ZM6.59 8.4799C6.17626 8.4799 5.77947 8.31554 5.48691 8.02298C5.19435 7.73043 5.03 7.33363 5.03 6.9199C5.03 6.50616 5.19435 6.10937 5.48691 5.81681C5.77947 5.52425 6.17626 5.3599 6.59 5.3599C6.80969 5.33498 7.03217 5.35675 7.24287 5.42378C7.45357 5.49081 7.64774 5.60159 7.81265 5.74886C7.97757 5.89613 8.10952 6.07657 8.19987 6.27838C8.29021 6.48018 8.33692 6.69879 8.33692 6.9199C8.33692 7.141 8.29021 7.35961 8.19987 7.56141C8.10952 7.76322 7.97757 7.94366 7.81265 8.09093C7.64774 8.23821 7.45357 8.34898 7.24287 8.41601C7.03217 8.48304 6.80969 8.50481 6.59 8.4799ZM18.91 18.7399H15.91V13.9099C15.91 12.6999 15.48 11.9099 14.39 11.9099C14.0527 11.9124 13.7242 12.0182 13.4488 12.2131C13.1735 12.408 12.9645 12.6826 12.85 12.9999C12.7717 13.2349 12.7378 13.4825 12.75 13.7299V18.7299H9.75C9.75 18.7299 9.75 10.5499 9.75 9.7299H12.75V10.9999C13.0225 10.527 13.4189 10.1374 13.8964 9.8731C14.374 9.60878 14.9146 9.47975 15.46 9.4999C17.46 9.4999 18.91 10.7899 18.91 13.5599V18.7399Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </motion.a>
-            </motion.div>
-          </div>
-        </div>
-      </motion.footer>
+      <Footer
+        containerVariants={containerVariants}
+        itemVariants={itemVariants}
+        pulseAnimation={pulseAnimation}
+      />
     </div>
   );
 }
