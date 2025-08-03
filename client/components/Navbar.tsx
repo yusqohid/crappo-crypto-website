@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 interface NavbarProps {
   containerVariants?: any;
@@ -11,6 +12,7 @@ export default function Navbar({
   itemVariants,
 }: NavbarProps) {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const defaultContainerVariants = {
     hidden: { opacity: 0 },
@@ -49,6 +51,50 @@ export default function Navbar({
     return location.pathname === path;
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const mobileMenuVariants = {
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const mobileItemVariants = {
+    closed: {
+      opacity: 0,
+      x: -20,
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <motion.header
       className="relative z-10"
@@ -56,7 +102,7 @@ export default function Navbar({
       animate="visible"
       variants={finalContainerVariants}
     >
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] py-[60px]">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] py-4 lg:py-[60px]">
         {/* Top Navigation */}
         <motion.div
           className="flex items-center justify-between"
@@ -179,25 +225,122 @@ export default function Navbar({
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 text-white"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <AnimatePresence mode="wait">
+              {!isMobileMenuOpen ? (
+                <motion.svg
+                  key="hamburger"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 0 }}
+                  exit={{ rotate: 180 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </motion.svg>
+              ) : (
+                <motion.svg
+                  key="close"
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 0 }}
+                  exit={{ rotate: -180 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </motion.svg>
+              )}
+            </AnimatePresence>
           </motion.button>
         </motion.div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="lg:hidden overflow-hidden"
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={mobileMenuVariants}
+            >
+              <div className="px-4 py-6 bg-white/5 backdrop-blur-md rounded-2xl mt-4 border border-white/10">
+                {/* Mobile Navigation */}
+                <motion.nav
+                  className="space-y-4 mb-6"
+                  variants={mobileMenuVariants}
+                >
+                  {navigationItems.map((item) => (
+                    <motion.div
+                      key={item.name}
+                      variants={mobileItemVariants}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Link
+                        to={item.path}
+                        onClick={closeMobileMenu}
+                        className={`block py-3 px-4 rounded-lg font-rubik text-base transition-all ${
+                          isActive(item.path)
+                            ? "text-crypto-blue bg-crypto-blue/10"
+                            : "text-white hover:text-crypto-blue hover:bg-white/5"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.nav>
+
+                {/* Mobile Auth Buttons */}
+                <motion.div
+                  className="flex flex-col space-y-3 pt-4 border-t border-white/10"
+                  variants={mobileMenuVariants}
+                >
+                  <motion.div variants={mobileItemVariants}>
+                    <Link
+                      to="/login"
+                      onClick={closeMobileMenu}
+                      className="block py-3 px-4 text-center font-rubik font-medium text-base text-white hover:text-crypto-blue transition-colors rounded-lg hover:bg-white/5"
+                    >
+                      Login
+                    </Link>
+                  </motion.div>
+                  <motion.div variants={mobileItemVariants}>
+                    <Link
+                      to="/register"
+                      onClick={closeMobileMenu}
+                      className="block py-3 px-4 text-center bg-crypto-blue hover:bg-blue-600 transition-colors rounded-lg font-rubik font-medium text-base text-white"
+                    >
+                      Register
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );

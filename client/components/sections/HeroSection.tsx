@@ -7,9 +7,248 @@ import {
 
 export default function HeroSection() {
   return (
-    <section className="max-w-[1440px] mx-auto px-6 lg:px-[120px] pb-[60px]">
+    <section className="relative max-w-[1440px] mx-auto px-6 lg:px-[120px] pb-[60px] overflow-hidden">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Main Radial Gradient Blurs */}
+        <motion.div
+          className="absolute top-20 left-10 w-[400px] h-[400px] bg-crypto-blue/20 rounded-full blur-[120px]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <motion.div
+          className="absolute top-40 right-20 w-[300px] h-[300px] bg-blue-400/15 rounded-full blur-[100px]"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[500px] h-[200px] bg-gradient-to-r from-crypto-blue/10 to-purple-400/10 rounded-full blur-[80px]"
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Grid Pattern Background */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: "50px 50px",
+            }}
+          />
+        </div>
+
+        {/* Floating Geometric Shapes */}
+        <motion.div
+          className="absolute top-32 left-1/4 w-20 h-20 border border-crypto-blue/20 rounded-full"
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+
+        <motion.div
+          className="absolute top-60 right-1/3 w-12 h-12 bg-gradient-to-br from-crypto-blue/10 to-transparent rounded-lg rotate-45"
+          animate={{
+            rotate: [45, 225, 45],
+            y: [-10, 10, -10],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-40 left-20 w-16 h-16 border-2 border-white/10 rotate-12"
+          animate={{
+            rotate: [12, 192, 12],
+            x: [-5, 5, -5],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Animated Light Rays */}
+        <motion.div
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[2px] h-40 bg-gradient-to-b from-crypto-blue/30 to-transparent"
+          animate={{
+            opacity: [0, 1, 0],
+            scaleY: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-[2px] h-32 bg-gradient-to-t from-blue-400/20 to-transparent"
+          animate={{
+            opacity: [0, 0.8, 0],
+            scaleY: [0.3, 1, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3,
+          }}
+        />
+
+        {/* Particle Effects */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-crypto-blue/40 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              x: [-10, 10, -10],
+              opacity: [0, 1, 0],
+              scale: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+
+        {/* Constellation Lines */}
+        <svg
+          className="absolute inset-0 w-full h-full opacity-10"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <motion.linearGradient
+              id="constellationGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+              animate={{
+                x2: ["100%", "0%", "100%"],
+                y2: ["100%", "0%", "100%"],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <stop offset="0%" stopColor="#3671E9" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#3671E9" stopOpacity="0.1" />
+            </motion.linearGradient>
+          </defs>
+
+          <motion.path
+            d="M100,200 Q300,100 500,300 T900,200"
+            stroke="url(#constellationGradient)"
+            strokeWidth="1"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.6 }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
+          />
+
+          <motion.path
+            d="M200,400 Q400,200 600,450 T1000,350"
+            stroke="url(#constellationGradient)"
+            strokeWidth="1"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.4 }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+              delay: 1,
+            }}
+          />
+        </svg>
+
+        {/* Corner Accent Lights */}
+        <motion.div
+          className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-crypto-blue/20 to-transparent rounded-full blur-xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-blue-400/15 to-transparent rounded-full blur-xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+      </div>
+
       {/* Hero Content */}
-      <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
+      <div className="relative z-10 grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
         {/* Left Content */}
         <motion.div
           className="space-y-6 lg:space-y-8 order-last lg:order-first"
@@ -17,9 +256,10 @@ export default function HeroSection() {
           animate="visible"
           variants={slideInLeft}
         >
+          {/* ...existing code... */}
           {/* Promotional Badge */}
           <motion.div
-            className="inline-flex items-center bg-white/10 rounded-full px-2 py-1 max-w-fit mx-auto sm:mx-0"
+            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-2 py-1 max-w-fit mx-auto sm:mx-0 border border-white/20"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{
@@ -99,7 +339,7 @@ export default function HeroSection() {
 
           {/* CTA Button */}
           <motion.button
-            className="inline-flex items-center gap-6 bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl px-6 py-4 lg:px-8 lg:py-6 group"
+            className="relative inline-flex items-center gap-6 bg-crypto-blue hover:bg-blue-600 transition-colors rounded-4xl px-6 py-4 lg:px-8 lg:py-6 group overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2, duration: 0.6 }}
@@ -109,11 +349,19 @@ export default function HeroSection() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="font-rubik font-medium text-lg text-white">
+            {/* Button Glow Effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.6 }}
+            />
+
+            <span className="relative font-rubik font-medium text-lg text-white z-10">
               Try for FREE
             </span>
             <motion.div
-              className="w-8 h-8 bg-white rounded-full flex items-center justify-center"
+              className="relative w-8 h-8 bg-white rounded-full flex items-center justify-center z-10"
               whileHover={{
                 scale: 1.2,
                 rotate: 90,
@@ -148,51 +396,33 @@ export default function HeroSection() {
             <motion.img
               src="https://api.builder.io/api/v1/image/assets/TEMP/6a568ddf4d23ad9ba50ed984314961184dbb430b?width=1208"
               alt="Crypto trading platform illustration"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain relative z-10"
               animate={floatingAnimation}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
 
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 -z-10 hidden lg:block">
-              {/* Decorative lines */}
-              <motion.div
-                className="absolute top-1/2 left-1/4 w-[120px] h-[400px] opacity-20"
-                initial={{ opacity: 0, rotate: -120 }}
-                animate={{ opacity: 0.2, rotate: -120 }}
-                transition={{ delay: 2.5, duration: 1 }}
-              >
-                <motion.img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/625ce806043f844d7dafb6d866384465af38e111?width=240"
-                  alt=""
-                  className="w-full h-full object-contain transform -rotate-[120deg]"
-                  animate={{ rotate: [-120, -110, -120] }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              </motion.div>
-              <motion.div
-                className="absolute top-1/2 right-1/4 w-[120px] h-[400px] opacity-20 transform rotate-60"
-                initial={{ opacity: 0, rotate: 60 }}
-                animate={{ opacity: 0.2, rotate: 60 }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-
-            {/* Floating elements around illustration */}
+            {/* Illustration Background Glow */}
             <motion.div
-              className="absolute top-20 right-10 w-4 h-4 bg-crypto-blue rounded-full opacity-60"
+              className="absolute inset-0 bg-gradient-to-br from-crypto-blue/20 via-transparent to-blue-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [0.8, 1.1, 0.8],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Enhanced Floating elements around illustration */}
+            <motion.div
+              className="absolute top-20 right-10 w-4 h-4 bg-crypto-blue rounded-full opacity-60 shadow-lg shadow-crypto-blue/50"
               animate={{
                 y: [-20, 20, -20],
                 x: [-10, 10, -10],
+                scale: [1, 1.2, 1],
               }}
               transition={{
                 duration: 5,
@@ -201,13 +431,42 @@ export default function HeroSection() {
               }}
             />
             <motion.div
-              className="absolute bottom-20 left-10 w-6 h-6 bg-white bg-opacity-20 rounded-full"
+              className="absolute bottom-20 left-10 w-6 h-6 bg-white bg-opacity-20 rounded-full shadow-lg shadow-white/20"
               animate={{
                 y: [20, -20, 20],
                 x: [10, -10, 10],
+                rotate: [0, 180, 360],
               }}
               transition={{
                 duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Additional Floating Crypto Icons */}
+            <motion.div
+              className="absolute top-32 left-8 w-8 h-8 bg-gradient-to-br from-yellow-400/80 to-orange-500/80 rounded-full"
+              animate={{
+                y: [-15, 15, -15],
+                rotate: [0, 360, 0],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            <motion.div
+              className="absolute bottom-32 right-8 w-6 h-6 bg-gradient-to-br from-purple-400/80 to-pink-500/80 rounded-lg rotate-45"
+              animate={{
+                y: [10, -10, 10],
+                x: [-5, 5, -5],
+                rotate: [45, 225, 45],
+              }}
+              transition={{
+                duration: 8,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}

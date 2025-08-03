@@ -82,7 +82,7 @@ export default function Contact() {
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-[120px]">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-[60px]">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Information */}
             <motion.div className="space-y-8" variants={itemVariants}>
@@ -210,7 +210,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     rows={5}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 font-rubik text-white placeholder-crypto-grey focus:outline-none focus:ring-2 focus:ring-crypto-blue focus:border-transparent transition-all duration-300 resize-none"
+                    className="w-full bg-white/10 border border-white/20 rounded-[16px] px-4 py-3 font-rubik text-white placeholder-crypto-grey focus:outline-none focus:ring-2 focus:ring-crypto-blue focus:border-transparent transition-all duration-300 resize-none"
                     placeholder="Tell us more about your inquiry..."
                   ></textarea>
                 </div>
