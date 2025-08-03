@@ -291,183 +291,447 @@ export default function Index() {
 
       {/* Why CRAPPO Section */}
       <motion.section
-        className="relative py-20 lg:py-32"
+        className="relative py-20 lg:py-32 overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
-          {/* Statistics */}
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16 mb-20 lg:mb-32"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-crypto-blue bg-opacity-5 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.05, 0.1, 0.05],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white bg-opacity-5 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.05, 0.1, 0.05],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        </div>
+
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] relative z-10">
+          {/* Statistics Header */}
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            variants={itemVariants}
+          >
+            <motion.span
+              className="inline-block px-4 py-2 bg-crypto-blue bg-opacity-20 rounded-full font-rubik font-medium text-sm text-white mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              GLOBAL STATISTICS
+            </motion.span>
+            <motion.h2
+              className="font-rubik font-bold text-3xl lg:text-5xl text-white mb-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Trusted by millions{" "}
+              <span className="bg-gradient-to-r from-crypto-blue to-blue-400 bg-clip-text text-transparent">
+                worldwide
+              </span>
+            </motion.h2>
+            <motion.p
+              className="font-rubik text-lg text-crypto-grey max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              Join our growing community of investors and traders from around
+              the globe
+            </motion.p>
+          </motion.div>
+
+          {/* Enhanced Statistics Grid */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-20 lg:mb-32"
             variants={containerVariants}
           >
-            {/* Stat 1 */}
+            {/* Stat 1 - Enhanced */}
             <motion.div
-              className="text-center lg:text-left"
+              className="relative group"
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-4">
-                <motion.div
-                  className="w-12 h-12 bg-crypto-blue bg-opacity-20 rounded-lg flex items-center justify-center"
-                  animate={pulseAnimation}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3 13H11L15 17L21 11"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3 13V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H19C19.5304 21 20.0391 20.7893 20.4142 20.4142C20.7893 20.0391 21 19.5304 21 19V11"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+              <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-20">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern
+                        id="grid1"
+                        width="10"
+                        height="10"
+                        patternUnits="userSpaceOnUse"
+                      >
+                        <path
+                          d="M 10 0 L 0 0 0 10"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="0.5"
+                        />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#grid1)" />
                   </svg>
-                </motion.div>
+                </div>
+
+                <div className="relative z-10">
+                  {/* Icon Container */}
+                  <motion.div
+                    className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-crypto-blue to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
+                    animate={{
+                      boxShadow: [
+                        "0 4px 20px rgba(54, 113, 233, 0.3)",
+                        "0 8px 30px rgba(54, 113, 233, 0.5)",
+                        "0 4px 20px rgba(54, 113, 233, 0.3)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3 13H11L15 17L21 11"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M3 13V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H19C19.5304 21 20.0391 20.7893 20.4142 20.4142C20.7893 20.0391 21 19.5304 21 19V11"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </motion.div>
+
+                  {/* Counter Animation */}
+                  <motion.h3
+                    className="font-rubik font-bold text-4xl lg:text-5xl text-white mb-3"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.3,
+                      duration: 0.8,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      $30B+
+                    </motion.span>
+                  </motion.h3>
+
+                  <p className="font-rubik text-base text-crypto-grey mb-4">
+                    Digital Currency Exchanged
+                  </p>
+
+                  {/* Progress Bar */}
+                  <div className="w-full bg-white/10 rounded-full h-2 mb-2">
+                    <motion.div
+                      className="bg-gradient-to-r from-crypto-blue to-blue-400 h-2 rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "85%" }}
+                      transition={{ delay: 0.8, duration: 1.5 }}
+                      viewport={{ once: true }}
+                    />
+                  </div>
+                  <span className="text-xs text-crypto-grey">
+                    85% Growth YoY
+                  </span>
+                </div>
               </div>
-              <motion.h3
-                className="font-rubik font-bold text-3xl lg:text-4xl text-white mb-2"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                $30B
-              </motion.h3>
-              <p className="font-rubik text-base text-crypto-grey">
-                Digital Currency Exchanged
-              </p>
             </motion.div>
 
-            {/* Stat 2 */}
+            {/* Stat 2 - Enhanced */}
             <motion.div
-              className="text-center lg:text-left"
+              className="relative group"
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-4">
-                <motion.div
-                  className="w-12 h-12 bg-crypto-blue bg-opacity-20 rounded-lg flex items-center justify-center"
-                  animate={pulseAnimation}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle
-                      cx="12"
-                      cy="7"
-                      r="4"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                    />
+              <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-20">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern
+                        id="grid2"
+                        width="8"
+                        height="8"
+                        patternUnits="userSpaceOnUse"
+                      >
+                        <circle
+                          cx="4"
+                          cy="4"
+                          r="1"
+                          fill="currentColor"
+                          opacity="0.3"
+                        />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#grid2)" />
                   </svg>
-                </motion.div>
+                </div>
+
+                <div className="relative z-10">
+                  {/* Icon Container */}
+                  <motion.div
+                    className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg"
+                    animate={{
+                      boxShadow: [
+                        "0 4px 20px rgba(16, 185, 129, 0.3)",
+                        "0 8px 30px rgba(16, 185, 129, 0.5)",
+                        "0 4px 20px rgba(16, 185, 129, 0.3)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1,
+                    }}
+                  >
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle
+                        cx="12"
+                        cy="7"
+                        r="4"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </motion.div>
+
+                  {/* Counter Animation */}
+                  <motion.h3
+                    className="font-rubik font-bold text-4xl lg:text-5xl text-white mb-3"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.5,
+                      duration: 0.8,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.7, duration: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      10M+
+                    </motion.span>
+                  </motion.h3>
+
+                  <p className="font-rubik text-base text-crypto-grey mb-4">
+                    Trusted Wallets Investor
+                  </p>
+
+                  {/* Progress Bar */}
+                  <div className="w-full bg-white/10 rounded-full h-2 mb-2">
+                    <motion.div
+                      className="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "92%" }}
+                      transition={{ delay: 1, duration: 1.5 }}
+                      viewport={{ once: true }}
+                    />
+                  </div>
+                  <span className="text-xs text-crypto-grey">
+                    92% Active Users
+                  </span>
+                </div>
               </div>
-              <motion.h3
-                className="font-rubik font-bold text-3xl lg:text-4xl text-white mb-2"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                10M+
-              </motion.h3>
-              <p className="font-rubik text-base text-crypto-grey">
-                Trusted Wallets Investor
-              </p>
             </motion.div>
 
-            {/* Stat 3 */}
+            {/* Stat 3 - Enhanced */}
             <motion.div
-              className="text-center lg:text-left"
+              className="relative group"
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-4">
-                <motion.div
-                  className="w-12 h-12 bg-crypto-blue bg-opacity-20 rounded-lg flex items-center justify-center"
-                  animate={pulseAnimation}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                    />
-                    <path
-                      d="M2 12H6"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M18 12H22"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M12 2V6"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M12 18V22"
-                      stroke="#3671E9"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
+              <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-20">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern
+                        id="grid1"
+                        width="10"
+                        height="10"
+                        patternUnits="userSpaceOnUse"
+                      >
+                        <path
+                          d="M 10 0 L 0 0 0 10"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="0.5"
+                        />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#grid1)" />
                   </svg>
-                </motion.div>
+                </div>
+
+                <div className="relative z-10">
+                  {/* Icon Container */}
+                  <motion.div
+                    className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg"
+                    animate={{
+                      boxShadow: [
+                        "0 4px 20px rgba(147, 51, 234, 0.3)",
+                        "0 8px 30px rgba(147, 51, 234, 0.5)",
+                        "0 4px 20px rgba(147, 51, 234, 0.3)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 2,
+                    }}
+                  >
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="M2 12H6"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M18 12H22"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M12 2V6"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M12 18V22"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </motion.div>
+
+                  {/* Counter Animation */}
+                  <motion.h3
+                    className="font-rubik font-bold text-4xl lg:text-5xl text-white mb-3"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.7,
+                      duration: 0.8,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.9, duration: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      195+
+                    </motion.span>
+                  </motion.h3>
+
+                  <p className="font-rubik text-base text-crypto-grey mb-4">
+                    Countries Supported
+                  </p>
+
+                  {/* Progress Bar */}
+                  <div className="w-full bg-white/10 rounded-full h-2 mb-2">
+                    <motion.div
+                      className="bg-gradient-to-r from-purple-500 to-indigo-400 h-2 rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "78%" }}
+                      transition={{ delay: 1.2, duration: 1.5 }}
+                      viewport={{ once: true }}
+                    />
+                  </div>
+                  <span className="text-xs text-crypto-grey">
+                    78% Global Coverage
+                  </span>
+                </div>
               </div>
-              <motion.h3
-                className="font-rubik font-bold text-3xl lg:text-4xl text-white mb-2"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                195
-              </motion.h3>
-              <p className="font-rubik text-base text-crypto-grey">
-                Countries Supported
-              </p>
             </motion.div>
           </motion.div>
 
@@ -528,6 +792,15 @@ export default function Index() {
               viewport={{ once: true, amount: 0.3 }}
               variants={slideInRight}
             >
+              <motion.span
+                className="inline-block px-4 py-2 bg-crypto-blue bg-opacity-20 rounded-full font-rubik font-medium text-sm text-white mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                WHY CHOOSE US
+              </motion.span>
               <motion.h2
                 className="font-rubik font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
                 variants={itemVariants}
@@ -574,6 +847,15 @@ export default function Index() {
         {/* Dark Background Top Section */}
         <div className="bg-crypto-dark py-16 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px] text-center">
+            <motion.span
+              className="inline-block px-4 py-2 bg-crypto-blue bg-opacity-20 rounded-full font-rubik font-medium text-sm text-white mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              EARNING CALCULATOR
+            </motion.span>
             <motion.h2
               className="font-rubik font-bold text-3xl lg:text-5xl text-white mb-6"
               variants={itemVariants}
