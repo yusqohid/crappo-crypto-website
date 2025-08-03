@@ -15,6 +15,21 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist/spa",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunks for better caching
+          vendor: ["react", "react-dom", "react-router-dom"],
+          ui: ["@tanstack/react-query", "@radix-ui/react-toast"],
+          animation: ["framer-motion"],
+          icons: ["lucide-react"],
+        },
+      },
+    },
+    // Enable compression with default minifier
+    minify: true,
+    // Optimize chunk size
+    chunkSizeWarningLimit: 1000,
   },
   plugins: [react(), expressPlugin()],
   resolve: {
