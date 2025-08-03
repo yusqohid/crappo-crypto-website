@@ -15,10 +15,11 @@ Website CRAPPO sudah siap untuk di-deploy ke Vercel dengan optimasi penuh.
 
 ✅ **Vercel Configuration**
 
-- `vercel.json` - Konfigurasi routing dan headers
+- `vercel.json` - Konfigurasi routing, headers, dan security
 - `.vercelignore` - File yang tidak perlu di-upload
 - Build command: `npm run build:client`
 - Output directory: `dist/spa`
+- Fixed: Invalid regex pattern in headers
 
 ✅ **SEO & Performance**
 
@@ -91,9 +92,11 @@ File Sizes after Gzip:
 
 ### Caching Strategy
 
-- Static assets: 1 year cache (immutable)
+- Assets (/assets/): 1 year cache (immutable)
+- Images (/image/): 1 year cache (immutable)
+- Favicon: 1 day cache
 - HTML: No cache (untuk updates)
-- API routes: Custom cache headers
+- Security headers: Content-Type, Frame options, XSS protection
 
 ## 🌐 Custom Domain (Optional)
 
