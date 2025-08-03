@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm run build:client",
-  "outputDirectory": "dist/spa",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": null,
@@ -55,10 +55,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "client/**": {
-      "includeFiles": "client/**"
-    }
-  }
+  ]
 }
