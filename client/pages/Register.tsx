@@ -153,7 +153,7 @@ export default function Register() {
       </header>
 
       {/* Register Form */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-[120px] py-16">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-[120px] pb-16">
         <div className="max-w-md mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

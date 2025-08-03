@@ -30,6 +30,10 @@ export default defineConfig(({ mode }) => ({
     minify: true,
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,
+    // Enable source maps for better debugging (disable for production)
+    sourcemap: mode === "development",
+    // Optimize assets
+    assetsInlineLimit: 4096,
   },
   plugins: [react(), expressPlugin()],
   resolve: {
