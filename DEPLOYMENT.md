@@ -13,7 +13,8 @@ Website CRAPPO sudah siap untuk di-deploy ke Vercel dengan optimasi penuh.
 - Minifikasi dan compression aktif
 - Source maps diatur berdasarkan environment
 
-✅ **Vercel Configuration** 
+✅ **Vercel Configuration**
+
 - `vercel.json` - Konfigurasi routing, headers, dan security
 - `vite.config.prod.ts` - Production build config (tanpa server import)
 - `.vercelignore` - File yang tidak perlu di-upload

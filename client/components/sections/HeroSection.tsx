@@ -206,7 +206,7 @@ const HeroSection = memo(() => {
       <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-8 items-center">
         {/* Left Content */}
         <motion.div
-          className="space-y-6 lg:space-y-8 order-last lg:order-first px-4 sm:px-0"
+          className="space-y-6 lg:space-y-8 order-last lg:order-first px-2 sm:px-0"
           initial="hidden"
           animate="visible"
           variants={slideInLeft}
