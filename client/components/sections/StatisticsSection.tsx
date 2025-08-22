@@ -1,12 +1,15 @@
 import React, { memo } from "react";
 import { motion } from "framer-motion";
 import {
-  containerVariants,
-  itemVariants,
-  slideInLeft,
-  slideInRight,
-  floatingAnimation,
-} from "../../lib/animations";
+  optimizedContainerVariants,
+  optimizedItemVariants,
+  optimizedSlideInLeft,
+  optimizedSlideInRight,
+  optimizedScaleIn,
+  gpuOptimizedStyles,
+  optimizedViewport
+} from "../../lib/optimizedAnimations";
+import { useAnimationOptimization } from "../../hooks/useAnimationOptimization";
 
 const statisticsData = [
   {

@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from "react";
-import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { usePerformanceMonitor } from "../hooks/usePerformance";

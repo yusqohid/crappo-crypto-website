@@ -10,22 +10,18 @@ import {
   gpuOptimizedStyles,
   transitionPresets,
 } from "../../lib/optimizedAnimations";
-import { useAnimationOptimization } from "../../hooks/useAnimationOptimization";
 
-const HeroSection = memo(() => {
-  const { getAnimationConfig, shouldReduceMotion } = useAnimationOptimization();
-  const animConfig = getAnimationConfig();
-
-  // Memoize heavy calculations for better performance
+const HeroSectionOptimized = memo(() => {
+  // Memoize heavy calculations
   const backgroundElements = useMemo(
     () => (
       <>
-        {/* Reduced Background Blurs - Only 2 instead of 3, smaller blur values */}
+        {/* Reduced Background Blurs - Only 2 instead of 3 */}
         <motion.div
           className="absolute top-20 left-5 lg:left-10 w-[200px] md:w-[300px] lg:w-[350px] h-[200px] md:h-[300px] lg:h-[350px] bg-crypto-blue/15 rounded-full"
           style={{
             ...gpuOptimizedStyles,
-            filter: shouldReduceMotion ? "none" : "blur(60px)",
+            filter: "blur(80px)",
           }}
           variants={optimizedFadeIn}
           initial="hidden"
@@ -36,7 +32,7 @@ const HeroSection = memo(() => {
           className="absolute top-40 right-5 lg:right-20 w-[150px] md:w-[200px] lg:w-[250px] h-[150px] md:h-[200px] lg:h-[250px] bg-blue-400/10 rounded-full"
           style={{
             ...gpuOptimizedStyles,
-            filter: shouldReduceMotion ? "none" : "blur(40px)",
+            filter: "blur(60px)",
           }}
           variants={optimizedFadeIn}
           initial="hidden"
@@ -79,7 +75,7 @@ const HeroSection = memo(() => {
         />
       </>
     ),
-    [shouldReduceMotion],
+    [],
   );
 
   const ctaButton = useMemo(
@@ -91,8 +87,8 @@ const HeroSection = memo(() => {
         initial="hidden"
         animate="visible"
         transition={{ delay: 1.8 }}
-        whileHover={shouldReduceMotion ? undefined : optimizedButtonHover}
-        whileTap={shouldReduceMotion ? undefined : optimizedButtonTap}
+        whileHover={optimizedButtonHover}
+        whileTap={optimizedButtonTap}
       >
         {/* Simplified Button Glow - CSS only */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -102,7 +98,7 @@ const HeroSection = memo(() => {
         </span>
         <motion.div
           className="relative w-8 h-8 bg-white rounded-full flex items-center justify-center z-10"
-          whileHover={shouldReduceMotion ? undefined : { rotate: 15 }}
+          whileHover={{ rotate: 15 }}
           transition={transitionPresets.fast}
         >
           <svg
@@ -120,7 +116,7 @@ const HeroSection = memo(() => {
         </motion.div>
       </motion.button>
     ),
-    [shouldReduceMotion],
+    [],
   );
 
   return (
@@ -148,7 +144,7 @@ const HeroSection = memo(() => {
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.6 }}
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
+            whileHover={{ scale: 1.02 }}
           >
             {/* Badge Section - Removed complex pulsing animation */}
             <div className="bg-white rounded-full px-3 py-1 shadow-md">
@@ -224,14 +220,10 @@ const HeroSection = memo(() => {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.4 }}
-              whileHover={
-                shouldReduceMotion
-                  ? undefined
-                  : {
-                      scale: 1.01,
-                      transition: transitionPresets.fast,
-                    }
-              }
+              whileHover={{
+                scale: 1.01,
+                transition: transitionPresets.fast,
+              }}
             />
 
             {/* Simplified Background Glow */}
@@ -239,7 +231,7 @@ const HeroSection = memo(() => {
               className="absolute inset-0 bg-gradient-to-br from-crypto-blue/15 via-transparent to-blue-400/15 rounded-full"
               style={{
                 ...gpuOptimizedStyles,
-                filter: shouldReduceMotion ? "none" : "blur(30px)",
+                filter: "blur(40px)",
               }}
               variants={optimizedFadeIn}
               initial="hidden"
@@ -293,6 +285,6 @@ const HeroSection = memo(() => {
   );
 });
 
-HeroSection.displayName = "HeroSection";
+HeroSectionOptimized.displayName = "HeroSectionOptimized";
 
-export default HeroSection;
+export default HeroSectionOptimized;
